@@ -1,11 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width">
+    <title>Mundo Pokemon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    
+    <div class="page">
+        <header class="header">
+            <div class="header__logo">
+                <img src="assets/logo_pokemon.png" width="300" height="150" alt="Logo de Pokemon">
+                <span class="header__subtitle">Subtitulo Pokemon</span>
+            </div>
+            <div class="header__filter"></div>
+            <div class="header__wishlist"></div>
+        </header>
+
+        <aside class="sidebar">
+            <h3 class="sidebar__title">Filter by</h3>
+
+            <div class="sidebar__form form">
+                <div class="form__input">
+                    <label for="gen">Gen</label>
+                    <select id="gen" name="gen"></select>
+                </div>
+                <div class="form__input">
+                    <label for="zone">Zona</label>
+                    <select id="zone" name="zone"></select>
+                </div>
+            </div>
+        </aside>
+
+        <main id="main">
+            <div id="movie-header" class="pokemon">
+                <h2 class="pokemon__title">Pokedex</h2>
+                <h4 class="pokemon__info">Desde 1995</h4>
+                <p class="pokemon__director">Fundador: Tsunekazu Ishihara</p>
+            </div>
+
+            <div class="list__wrapper">
+                <ul class="list list__characters">
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon" >
+                        <h2 class="character__name">Pokemon_1</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon">
+                        <h2 class="character__name">Pokemon_2</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon">
+                        <h2 class="character__name">Pokemon_3</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon">
+                        <h2 class="character__name">Pokemon_4</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon">
+                        <h2 class="character__name">Pokemon_5</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon">
+                        <h2 class="character__name">Pokemon_6</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon">
+                        <h2 class="character__name">Pokemon_7</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                    <li class="list__item item character">
+                        <img src="./assets/user.svg" class="character__image" alt="foto de pokemon">
+                        <h2 class="character__name">Pokemon_8</h2>
+                        <div class="character__type"><strong>Tipo:</strong> Fuego/agua...</div>
+                        <div class="character__gen"><strong>Gen:</strong> 1,2...</div>
+                        <div class="character__zone"><strong>Zona:</strong> (zona especifica)</div>
+                        <div class="character__move"><strong>Movimientos:</strong> Bola voltio...</div>
+                    </li>
+                </ul>
+            </div>
+        </main>
+    </div>
+        <script type="module" src="./js/index.js"></script>
 </body>
+
 </html>
