@@ -1,1 +1,37 @@
-sdfsgdf
+Funciones de la pokeApi
+
+- CARRUSEL DE JUEGOS
+
+Muestre portadas de juegos que cambien cada cierto tiempo de forma automática (10seg), que al hacer click muestre los Pokémon de la generación disponibles
+
+- un buscador avanzado
+
+Donde se puedan filtrar por nombre, tipo, habilidad, generación…
+
+- comparador de Pokémon
+
+Donde muestren dos Pokémon escogidos para ver las stats y las ventajas o desventajas que pueden haber
+
+- sonidos
+
+Al seleccionar un Pokémon que con este suene el sonido con su animación
+
+- seleccionador de Pokémon aleatorio
+
+Que muestre un Pokémon al azar con sus stats, el sonido, evoluciones
+
+- Jukebox Pokémon (reproductor de música)
+
+Música de rutas, de centros Pokémon, al hacer la comparación de Pokémon temas de batalla
+
+- trivia
+
+Preguntas generadas automáticamente por la pokeApi, como: ¿de los siguientes Pokémon cuál tiene mayor ataque?
+
+- sistema de clima
+
+Cada día aparecerá un clima diferente donde en esta parte aparecerán Pokémon relacionados
+
+- ranking de stats global
+
+Listas de top 10 ataques más altos, top hp entre otros…
