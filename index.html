@@ -15,6 +15,52 @@
             font-weight: normal;
             font-style: normal;
         }
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+        }
+         h2, h3 {
+            font-family: 'MiFuenteRick', sans-serif;
+            color: #b7e152;
+        }
+         /*  SELECTOR PERSONAJES */
+
+        #character-info {
+            background: linear-gradient(160deg, #0f0014, #1c0026);
+            border: 3px solid #8aff00;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #39ff14;
+            min-height: 520px;
+        }
+
+        #characters .card {
+            background: #140018;
+            border: 2px solid #8aff00;
+            border-radius: 12px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        #characters .card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #39ff14;
+        }
+
+        #characters .card.selected {
+            border-color: #00fff2;
+            box-shadow: 0 0 25px #00fff2;
+        }
+
+        #characters img {
+            border-radius: 10px;
+        }
+
+        .card-title {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 4px;
+        }
+ºººº
 
         .titulo-episodios {
             /* Usamos el nombre exacto que pusimos arriba y el !important */
@@ -139,47 +185,31 @@
                 </div>
             </aside>
 
+            
+
             <!-- MAIN -->
             <main class="col-lg-9 col-md-8 p-4">
 
-                <section class="bg-secondary p-4 rounded mb-4 shadow-sm">
-                    <h4>Bienvenido</h4>
-                    <p>Explora personajes reales gracias a la API pública.</p>
-                    <span class="badge bg-warning text-dark">Tema: Rick and Morty API</span>
-                </section>
+                 <!-- SELECTOR PERSONAJES -->
+            <section class="container-fluid mb-5">
+                <div class="row g-4">
 
-                <section class="bg-dark border border-secondary rounded p-3 mb-4">
-                    <h5>Personajes encontrados (<span id="count">0</span>)</h5>
-                </section>
+                    <div class="col-md-6">
+                        <div id="character-info" class="p-4 text-center">
+                            <h3>PERSONAJE</h3>
+                            <p class="text-muted">Selecciona un personaje</p>
+                        </div>
+                    </div>
 
-                <div class="d-flex justify-content-center gap-3 mb-4">
-                    <button class="btn btn-outline-light" onclick="changePage(-1)">Anterior</button>
-                    <button class="btn btn-outline-light" onclick="changePage(1)">Siguiente</button>
+                    <div class="col-md-6">
+                        <ul id="characters"
+                            class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3 list-unstyled">
+                        </ul>
+                    </div>
+
                 </div>
+            </section>
 
-                <ul id="characters" class="row row-cols-2 row-cols-md-4 g-3 list-unstyled"></ul>
-
-                <div class="d-flex justify-content-center gap-3 mt-4">
-                    <button class="btn btn-outline-light" onclick="changePage(-1)">Anterior</button>
-                    <button class="btn btn-outline-light" onclick="changePage(1)">Siguiente</button>
-                </div>
-
-                <!-- CONTENEDOR 3: Grid de personajes -->
-                <section class="container-fluid">
-                    <ul id="characters"
-                        class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-3 list-unstyled">
-                        <!-- row = fila de Bootstrap para el grid -->
-                        <!-- row-cols-* = define cuántas columnas según tamaño de pantalla -->
-                        <!-- g-3 = gap entre columnas y filas -->
-                        <!-- list-unstyled = quitar bullets del ul -->
-                        <!-- Las cards se insertan dinámicamente con JS -->
-                    </ul>
-                </section>
-
-                <div class="d-flex justify-content-center gap-3 mt-4">
-                    <button class="btn btn-outline-light" onclick="changePage(-1)">Anterior</button>
-                    <button class="btn btn-outline-light" onclick="changePage(1)">Siguiente</button>
-                </div>
                 
                 <!--CROUSEL DE ESPISODIOS-->
                 <section id="seccion-episodios" class="container-fluid rounded mb-4 p-4 shadow-lg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png') !important; 
@@ -240,60 +270,45 @@
     <script>
         let page = 1;
         let currentData = [];
-        const list = document.getElementById("characters");
-        const count = document.getElementById("count");
+    const list = document.getElementById("characters");
+    const info = document.getElementById("character-info");
 
-        function loadCharacters() {
-            fetch(`https://rickandmortyapi.com/api/character/?page=${page}`)
-                .then(res => res.json())
-                .then(data => {
-                    currentData = data.results;
-                    renderCharacters(currentData);
-                });
-        }
-
-        function renderCharacters(data) {
-            list.innerHTML = "";
-            const limited = data.slice(0, 12);
-            count.textContent = limited.length;
-
-            limited.forEach(c => {
-                list.innerHTML += `
-        <li class="col">
-            <div class="card h-100 text-center">
-                <img src="${c.image}" class="card-img-top">
-                <div class="card-body p-2">
-                    <h6>${c.name}</h6>
-                </div>
-            </div>
-        </li>`;
+    function loadCharacters() {
+        fetch("https://rickandmortyapi.com/api/character")
+            .then(res => res.json())
+            .then(data => {
+                currentData = data.results;
+                renderCharacters(currentData);
             });
-        }
+    }
 
-        function applyFilters() {
-            const status = statusFilter.value;
-            const species = speciesFilter.value;
+    function renderCharacters(data) {
+        list.innerHTML = "";
+        data.slice(0, 15).forEach(c => {
+            const li = document.createElement("li");
+            li.className = "col";
+            li.innerHTML = `
+                <div class="card p-2 text-center">
+                    <img src="${c.image}" class="img-fluid">
+                    <div class="card-title">${c.name}</div>
+                </div>`;
+            li.querySelector(".card").onclick = () => selectCharacter(c, li.querySelector(".card"));
+            list.appendChild(li);
+        });
+    }
 
-            const filtered = currentData.filter(c =>
-                (status === "" || c.status.toLowerCase() === status) &&
-                (species === "" || c.species === species)
-            );
+    function selectCharacter(c, card) {
+        document.querySelectorAll("#characters .card").forEach(x => x.classList.remove("selected"));
+        card.classList.add("selected");
 
-            renderCharacters(filtered);
-        }
-
-        function resetFilters() {
-            statusFilter.value = "";
-            speciesFilter.value = "";
-            renderCharacters(currentData);
-        }
-
-        function changePage(dir) {
-            page += dir;
-            loadCharacters();
-        }
-
-        loadCharacters();
+        info.innerHTML = `
+            <h3>${c.name}</h3>
+            <img src="${c.image}" class="img-fluid rounded mb-3" style="max-width:260px;">
+            <p><strong>Estado:</strong> ${c.status}</p>
+            <p><strong>Especie:</strong> ${c.species}</p>
+            <p><strong>Género:</strong> ${c.gender}</p>
+            <p><strong>Origen:</strong> ${c.origin.name}</p>`;
+    }
 
         function renderTemporadas() {
             // 1. Buscamos los "huecos" donde vamos a meter las temporadas
