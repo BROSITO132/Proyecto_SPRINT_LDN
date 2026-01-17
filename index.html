@@ -180,7 +180,8 @@
                     <button class="btn btn-outline-light" onclick="changePage(-1)">Anterior</button>
                     <button class="btn btn-outline-light" onclick="changePage(1)">Siguiente</button>
                 </div>
-
+                
+                <!--CROUSEL DE ESPISODIOS-->
                 <section id="seccion-episodios" class="container-fluid rounded mb-4 p-4 shadow-lg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png') !important; 
            background-size: cover !important; 
            background-position: center !important;
@@ -369,7 +370,7 @@
             });
         }
         // En lugar de llamar a la función a secas, asegúrate de que el carrusel se inicialice después
-        renderTemporadas();
+        
 
         // Esto fuerza a Bootstrap a reconocer el carrusel después de inyectar las fotos
         const myCarousel = new bootstrap.Carousel(document.getElementById('carouselTemporadas'));
