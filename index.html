@@ -11,35 +11,50 @@
 </head>
 
 <body class="bg-dark text-light">
-<header class="position-relative w-100 overflow-hidden" style="height:70vh">
-    <img src="img/header.jpg" class="position-absolute top-0 start-0 w-100 h-100 img-conf-header"
-         alt="Rick and Morty header">
-    <div class="position-absolute top-0 start-0 w-100 bg-dark opacity-75 height-10"></div>
-    <div class="position-relative h-100 text-light">
-        <div class="d-flex align-items-start pt-3">
-            <div
-                    class="ms-4"><img src="/img/Rick_and_Morty.png" style="max-width:120px"></div>
-            <div class="d-flex gap-3 ms-3 me-auto">
-                <button class="btn btn-md button-conf fs-4 fw-bold">Personajes</button>
-                <button class="btn btn-md button-conf fs-4 fw-bold">Comunidad</button>
-                <button class="btn btn-md button-conf fs-4 fw-bold">Universos</button>
-                <button class="btn btn-md button-conf fs-4 fw-bold">Episodios</button>
-            </div>
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-light btn-sm">HOME</button>
-                <button
-                        class="btn btn-warning btn-sm text-dark me-4">SIGN IN
-                </button>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center h-100">
-        </div>
-        <div class="position-absolute bottom-0 start-50 translate-middle-x pb-5">
 
+<nav class="navbar navbar-expand-lg sticky-top nav-bg" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="/img/Rick_and_Morty.png" alt="Logo" width="150" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav gap-3 ms-3 ">
+                <li class="nav-item ">
+                    <a class="btn btn-md button-conf fs-4 fw-bold " aria-current="page" href="#">Personajes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-md button-conf fs-4 fw-bold" aria-current="page" href="#">Comunidad</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-md button-conf fs-4 fw-bold" aria-current="page" href="#">Universos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-md button-conf fs-4 fw-bold" aria-current="page" href="#">Episodios</a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex-row-reverse">
+            <ul class="navbar-nav gap-3 ms-3">
+                <li class="nav-item">
+                    <a class="btn button-conf me-4 fs-5 fw-bold" aria-current="page" href="#">SIGN IN</a>
+                </li>
+            </ul>
         </div>
     </div>
-</header>
+</nav>
+<!-- HTML -->
+<header class="img-main" style="
+        background-image: url('./img/header.png');
+        background-position: center;
+        background-size: cover;
+        height: 650px;
+        ">
 
+</header>
 
 <!-- ================= CONTENIDO ================= -->
 <div class="container-fluid min-vh-100 d-flex flex-column">

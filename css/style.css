@@ -1,14 +1,17 @@
 :root {
     --main-bg-color: #b7e152;
+    --nav-bg-color: rgba(0, 0, 0, 0.50);
 }
 
+.nav-bg{
+    background-color: var(--nav-bg-color);
+}
 .button-conf {
     background-color: var(--main-bg-color);
     color: purple;
     font-family: 'MiFuenteRick', serif;
     box-shadow: 0 0 10px #faff8d;
     transition: 0.5s;
-
 }
 
 .button-conf:hover {
@@ -18,6 +21,16 @@
 
 
 }
+
+/* CSS */
+.img-main {
+    background-image: url("../img/logo1.jpg");
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 700px;
+}
+
 
 .height-10 {
     height: 10%
