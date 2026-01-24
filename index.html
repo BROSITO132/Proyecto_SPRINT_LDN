@@ -10,74 +10,76 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body class="bg-dark text-light" style="font-family:'Open Sans', sans-serif;">
-    <header class="position-relative w-100 overflow-hidden" style="height:70vh">
-        <img src="img/header.jpg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit:cover"
-            alt="Rick and Morty header">
-        <div class="position-absolute top-0 start-0 w-100 bg-dark opacity-75" style="height: 10%;"></div>
-        <div class="position-relative h-100 text-light">
-            <div class="d-flex align-items-start pt-3"> <div
+<body class="bg-dark text-light">
+<header class="position-relative w-100 overflow-hidden" style="height:70vh">
+    <img src="img/header.jpg" class="position-absolute top-0 start-0 w-100 h-100 img-conf-header"
+         alt="Rick and Morty header">
+    <div class="position-absolute top-0 start-0 w-100 bg-dark opacity-75 height-10"></div>
+    <div class="position-relative h-100 text-light">
+        <div class="d-flex align-items-start pt-3">
+            <div
                     class="ms-4"><img src="/img/Rick_and_Morty.png" style="max-width:120px"></div>
-               <div class="d-flex gap-3 ms-3 me-auto">
-    <button class="btn btn-md text-white" style="background-color: purple;">Personajes</button>
-    <button class="btn btn-md text-white" style="background-color: purple;">Comunidad</button>
-    <button class="btn btn-md text-white" style="background-color: purple;">Universos</button>
-    <button class="btn btn-md text-white" style="background-color: purple;">Episodios</button>
-</div>
-                    <div class="d-flex gap-2"> <button class="btn btn-outline-light btn-sm">HOME</button> <button
-                        class="btn btn-warning btn-sm text-dark me-4">SIGN IN</button> </div>
+            <div class="d-flex gap-3 ms-3 me-auto">
+                <button class="btn btn-md button-conf fs-4 fw-bold">Personajes</button>
+                <button class="btn btn-md button-conf fs-4 fw-bold">Comunidad</button>
+                <button class="btn btn-md button-conf fs-4 fw-bold">Universos</button>
+                <button class="btn btn-md button-conf fs-4 fw-bold">Episodios</button>
             </div>
-            <div class="d-flex justify-content-center align-items-center h-100">
-            </div>
-            <div class="position-absolute bottom-0 start-50 translate-middle-x pb-5">
-                
+            <div class="d-flex gap-2">
+                <button class="btn btn-outline-light btn-sm">HOME</button>
+                <button
+                        class="btn btn-warning btn-sm text-dark me-4">SIGN IN
+                </button>
             </div>
         </div>
-    </header>
+        <div class="d-flex justify-content-center align-items-center h-100">
+        </div>
+        <div class="position-absolute bottom-0 start-50 translate-middle-x pb-5">
+
+        </div>
+    </div>
+</header>
 
 
+<!-- ================= CONTENIDO ================= -->
+<div class="container-fluid min-vh-100 d-flex flex-column">
+
+    <div class="row flex-grow-1">
+
+        <!-- ASIDE -->
+        <aside class="col-lg-3 col-md-4 border-end border-secondary p-3">
+            <h5 class="text-info">🔍 Filtros</h5>
+
+            <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select id="statusFilter" class="form-select">
+                    <option value="">Todos</option>
+                    <option value="alive">Vivo</option>
+                    <option value="dead">Muerto</option>
+                    <option value="unknown">Desconocido</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Especie</label>
+                <select id="speciesFilter" class="form-select">
+                    <option value="">Todas</option>
+                    <option value="Human">Humano</option>
+                    <option value="Alien">Alien</option>
+                </select>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
+                <button class="btn btn-outline-secondary" onclick="resetFilters()">Limpiar</button>
+            </div>
+        </aside>
 
 
-    <!-- ================= CONTENIDO ================= -->
-    <div class="container-fluid min-vh-100 d-flex flex-column">
+        <!-- MAIN -->
+        <main class="col-lg-9 col-md-8 p-4">
 
-        <div class="row flex-grow-1">
-
-            <!-- ASIDE -->
-            <aside class="col-lg-3 col-md-4 border-end border-secondary p-3">
-                <h5 class="text-info">🔍 Filtros</h5>
-
-                <div class="mb-3">
-                    <label class="form-label">Estado</label>
-                    <select id="statusFilter" class="form-select">
-                        <option value="">Todos</option>
-                        <option value="alive">Vivo</option>
-                        <option value="dead">Muerto</option>
-                        <option value="unknown">Desconocido</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Especie</label>
-                    <select id="speciesFilter" class="form-select">
-                        <option value="">Todas</option>
-                        <option value="Human">Humano</option>
-                        <option value="Alien">Alien</option>
-                    </select>
-                </div>
-
-                <div class="d-grid gap-2">
-                    <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
-                    <button class="btn btn-outline-secondary" onclick="resetFilters()">Limpiar</button>
-                </div>
-            </aside>
-
-            
-
-            <!-- MAIN -->
-            <main class="col-lg-9 col-md-8 p-4">
-
-                 <!-- SELECTOR PERSONAJES -->
+            <!-- SELECTOR PERSONAJES -->
             <section class="container-fluid mb-5">
                 <div class="row g-4">
 
@@ -97,63 +99,63 @@
                 </div>
             </section>
 
-                
-                <!--CROUSEL DE ESPISODIOS-->
-                <section id="seccion-episodios" class="container-fluid rounded mb-4 p-4 shadow-lg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png') !important; 
+
+            <!--CROUSEL DE ESPISODIOS-->
+            <section id="seccion-episodios" class="container-fluid rounded mb-4 p-4 shadow-lg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png') !important;
            background-size: cover !important; 
            background-position: center !important;
            background-repeat: no-repeat !important;
            border: 3px solid #b7e152;">
-                    <div class="text-center mb-4">
-                        <h2 class="titulo-episodios">
-                            EPISODIOS
-                        </h2>
-                    </div>
-                    <div id="carouselTemporadas" class="carousel slide">
+                <div class="text-center mb-4">
+                    <h2 class="titulo-episodios">
+                        EPISODIOS
+                    </h2>
+                </div>
+                <div id="carouselTemporadas" class="carousel slide">
 
-                        <div class="carousel-inner">
+                    <div class="carousel-inner">
 
-                            <div class="carousel-item active">
-                                <div id="temporadas-pag-1" class="row gx-2 justify-content-center p-4">
-                                </div>
+                        <div class="carousel-item active">
+                            <div id="temporadas-pag-1" class="row gx-2 justify-content-center p-4">
                             </div>
-
-                            <div class="carousel-item">
-                                <div id="temporadas-pag-2" class="row gx-2 justify-content-center p-4">
-                                </div>
-                            </div>
-
                         </div>
 
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas"
-                            data-bs-slide="prev" style="width: 5%;">
-                            <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
-                                style="width: 40px; height: 40px;">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            </span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas"
-                            data-bs-slide="next" style="width: 5%;">
-                            <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
-                                style="width: 40px; height: 40px;">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            </span>
-                        </button>
+                        <div class="carousel-item">
+                            <div id="temporadas-pag-2" class="row gx-2 justify-content-center p-4">
+                            </div>
+                        </div>
+
                     </div>
 
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas"
+                            data-bs-slide="prev" style="width: 5%;">
+                            <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
+                                  style="width: 40px; height: 40px;">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas"
+                            data-bs-slide="next" style="width: 5%;">
+                            <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
+                                  style="width: 40px; height: 40px;">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </span>
+                    </button>
+                </div>
 
-                </section>
 
-            </main>
-        </div>
+            </section>
 
-        <!-- FOOTER -->
-        <footer class="bg-black text-center py-2">
-            <small>Rick and Morty Database - Proyecto Educativo</small>
-        </footer>
+        </main>
     </div>
 
-<script src="/js/index.js"></script>
+    <!-- FOOTER -->
+    <footer class="bg-black text-center py-2">
+        <small>Rick and Morty Database - Proyecto Educativo</small>
+    </footer>
+</div>
+
+<script src="/Js/index.js"></script>
 </body>
 
 </html>
