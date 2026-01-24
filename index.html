@@ -1,117 +1,396 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <title>Base de Datos Temática</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,700;1,400&display=swap"
-        rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <meta charset="UTF-8">
+    <title>Rick and Morty Database</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'MiFuenteRick';
+            /* Le ponemos un nombre único para que no se confunda */
+            src: url('rick.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            background-color: #0b0b0b;
+            color: #ffffff;
+        }
+         h2, h3 {
+            font-family: 'MiFuenteRick', sans-serif;
+            color: #b7e152;
+        }
+         /*  SELECTOR PERSONAJES */
+
+        #character-info {
+            background: linear-gradient(160deg, #0f0014, #1c0026);
+            border: 3px solid #8aff00;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #39ff14;
+            min-height: 520px;
+        }
+
+        #characters .card {
+            background: #140018;
+            border: 2px solid #8aff00;
+            border-radius: 12px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        #characters .card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #39ff14;
+        }
+
+        #characters .card.selected {
+            border-color: #00fff2;
+            box-shadow: 0 0 25px #00fff2;
+        }
+
+        #characters img {
+            border-radius: 10px;
+        }
+
+        .card-title {
+            font-size: 0.8rem;
+            text-align: center;
+            margin-top: 4px;
+        }
+ºººº
+
+        .titulo-episodios {
+            /* Usamos el nombre exacto que pusimos arriba y el !important */
+            font-family: 'MiFuenteRick', sans-serif !important;
+
+            font-size: 4rem;
+            color: #b7e152;
+            background-color: black;
+            padding: 10px 40px;
+            border: 3px solid #b7e152;
+            border-radius: 10px;
+            text-shadow: 4px 4px 0px #000;
+            display: inline-block;
+            transform: rotate(-3deg);
+            margin-bottom: 20px;
+        }
+
+        /* 2. Estilo para el texto "Temporada X" */
+        .texto-temporada {
+            font-family: 'Arial Black', sans-serif;
+            font-style: italic;
+            color: #ffffff;
+            /* Cambiamos a blanco si el fondo es muy oscuro */
+            text-shadow: 2px 2px 0px #000, 0px 0px 10px #b7e152;
+            /* Doble sombra: negra para leer bien, verde para el estilo */
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        /* 3. Efecto en las imágenes para que resalten */
+        .img-temporada {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .img-temporada:hover {
+            transform: scale(1.05);
+            /* Se agranda un poco al pasar el ratón */
+            border-color: #b7e152 !important;
+            /* El borde cambia a verde */
+        }
+
+        /* Esto ajusta el tamaño de la sección dependiendo de la pantalla */
+        #seccion-episodios {
+            background-attachment: scroll;
+            /* Para que el fondo no haga saltos raros en móvil */
+            background-position: center !important;
+            transition: all 0.3s ease;
+        }
+
+        /* Ajuste para que las tarjetas no se peguen al borde en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .texto-temporada {
+                font-size: 0.8rem;
+                /* Texto más pequeño en móviles */
+            }
+
+            #seccion-episodios {
+                padding: 20px 10px !important;
+            }
+        }
+    </style>
 </head>
 
-<body>
-    <section class="page">
-
-        <header class="header">
-            <div class="header__logo">
-                <img src="assets/generic-logo.png" alt="Logo de la aplicación" />
-                <span class="header__subtitle">Colección y Referencia</span>
+<body class="bg-dark text-light" style="font-family:'Open Sans', sans-serif;">
+    <header class="position-relative w-100 overflow-hidden" style="height:70vh">
+        <img src="img/header.jpg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit:cover"
+            alt="Rick and Morty header">
+        <div class="position-absolute top-0 start-0 w-100 bg-dark opacity-75" style="height: 10%;"></div>
+        <div class="position-relative h-100 text-light">
+            <div class="d-flex justify-content-between align-items-start px-4 pt-3"> <span
+                    class="fw-bold text-success">Rick & Morty</span>
+                <div class="d-flex gap-2"> <button class="btn btn-outline-light btn-sm">HOME</button> <button
+                        class="btn btn-warning btn-sm text-dark">SIGN IN</button> </div>
             </div>
-
-            <div class="header__controls">
-                <div class="header__search">
-                    <input type="text" id="search-input" placeholder="Buscar por nombre..." />
-                </div>
-                <button id="favorites-button" class="control__button" aria-label="Ver Favoritos">
-                    ★
-                </button>
+            <div class="d-flex justify-content-center align-items-center h-100">
             </div>
-        </header>
+            <div class="position-absolute bottom-0 start-50 translate-middle-x pb-5">
+                <div class="d-flex gap-5"> <button class="btn btn-lg text-white"
+                        style="background-color: purple;">Personajes</button> <button class="btn btn-lg text-white"
+                        style="background-color: purple;">Comunidad</button> <button class="btn btn-lg text-white"
+                        style="background-color: purple;">Universos</button> <button class="btn btn-lg text-white"
+                        style="background-color: purple;">Episodios</button> </div>
+            </div>
+        </div>
+    </header>
 
-        <aside class="sidebar">
-            <h3 class="sidebar__title">🔍 Opciones de Filtrado</h3>
 
-            <div class="sidebar__form form">
-                <div class="form__group">
-                    <label for="select-filter-one">Filtro Principal:</label>
-                    <select id="select-filter-one" name="filter-one">
-                        <option value="">-- Selecciona un Contexto --</option>
+
+
+    <!-- ================= CONTENIDO ================= -->
+    <div class="container-fluid min-vh-100 d-flex flex-column">
+
+        <div class="row flex-grow-1">
+
+            <!-- ASIDE -->
+            <aside class="col-lg-3 col-md-4 border-end border-secondary p-3">
+                <h5 class="text-info">🔍 Filtros</h5>
+
+                <div class="mb-3">
+                    <label class="form-label">Estado</label>
+                    <select id="statusFilter" class="form-select">
+                        <option value="">Todos</option>
+                        <option value="alive">Vivo</option>
+                        <option value="dead">Muerto</option>
+                        <option value="unknown">Desconocido</option>
                     </select>
                 </div>
-                <div class="form__group">
-                    <label for="select-filter-two">Filtro Secundario:</label>
-                    <select id="select-filter-two" name="filter-two">
-                        <option value="">-- Selecciona una Característica --</option>
-                    </select>
-                </div>
-                <div class="form__group">
-                    <label for="select-sort">Ordenar por:</label>
-                    <select id="select-sort" name="sort">
-                        <option value="name_asc">Nombre (A-Z)</option>
-                        <option value="name_desc">Nombre (Z-A)</option>
-                        <option value="id_asc">ID/Número (Asc)</option>
+
+                <div class="mb-3">
+                    <label class="form-label">Especie</label>
+                    <select id="speciesFilter" class="form-select">
+                        <option value="">Todas</option>
+                        <option value="Human">Humano</option>
+                        <option value="Alien">Alien</option>
                     </select>
                 </div>
 
-                <div class="form__group actions">
-                    <button id="apply-filters" class="form__button primary">Aplicar Filtros</button>
-                    <button id="reset-filters" class="form__button secondary">Limpiar</button>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
+                    <button class="btn btn-outline-secondary" onclick="resetFilters()">Limpiar</button>
                 </div>
-            </div>
-        </aside>
+            </aside>
 
-        <main id="main">
+            
 
-            <section id="detail-info" class="detail-banner">
-                <h2 class="detail-banner__title">Bienvenido a la Base de Datos</h2>
-                <p class="detail-banner__description">
-                    Usa los filtros o la barra de búsqueda para explorar los elementos de la colección.
-                </p>
-                <div class="detail-banner__tag">Tema Actual: <strong id="current-theme">Cargando...</strong></div>
-            </section>
+            <!-- MAIN -->
+            <main class="col-lg-9 col-md-8 p-4">
 
-            <section class="list__section">
-                <h3 class="list__heading">Resultados Encontrados (<span id="results-count">0</span>)</h3>
+                 <!-- SELECTOR PERSONAJES -->
+            <section class="container-fluid mb-5">
+                <div class="row g-4">
 
-                <ul id="item-list" class="list list__items">
-                    <li class="list__item item item-card" data-id="[ITEM_ID]">
-                        <div class="item-card__header">
-                            <img src="./assets/placeholder.svg" alt="Imagen del elemento" class="item-card__image" />
-                            <button class="item-card__fav-toggle" aria-label="Añadir a favoritos">★</button>
+                    <div class="col-md-6">
+                        <div id="character-info" class="p-4 text-center">
+                            <h3>PERSONAJE</h3>
+                            <p class="text-muted">Selecciona un personaje</p>
                         </div>
-                        <h2 class="item-card__name">Nombre del Elemento</h2>
-                        <div class="item-card__info-grid">
-                            <div class="item-card__data"><strong>Campo 1:</strong> <span class="data-value"
-                                    id="data-1">Valor</span></div>
-                            <div class="item-card__data"><strong>Campo 2:</strong> <span class="data-value"
-                                    id="data-2">Valor</span></div>
-                            <div class="item-card__data"><strong>Campo 3:</strong> <span class="data-value"
-                                    id="data-3">Valor</span></div>
-                            <div class="item-card__data"><strong>Campo 4:</strong> <span class="data-value"
-                                    id="data-4">Valor</span></div>
-                        </div>
-                        <button class="item-card__view-details">Ver Detalles</button>
-                    </li>
-                </ul>
-
-                <div class="list__status-controls">
-                    <div id="loading-message" style="display: none;">⏳ Cargando elementos...</div>
-                    <div id="pagination-controls" class="pagination-controls" style="display: none;">
-                        <button id="prev-page" class="control__button" disabled>Anterior</button>
-                        <span id="current-page">Página 1</span>
-                        <button id="next-page" class="control__button">Siguiente</button>
                     </div>
+
+                    <div class="col-md-6">
+                        <ul id="characters"
+                            class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3 list-unstyled">
+                        </ul>
+                    </div>
+
                 </div>
-
             </section>
-        </main>
 
-        <footer class="footer">
-            <p class="footer__text">&copy; 2025 Base de Datos Temática. Desarrollado para tu proyecto.</p>
+                
+                <!--CROUSEL DE ESPISODIOS-->
+                <section id="seccion-episodios" class="container-fluid rounded mb-4 p-4 shadow-lg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png') !important; 
+           background-size: cover !important; 
+           background-position: center !important;
+           background-repeat: no-repeat !important;
+           border: 3px solid #b7e152;">
+                    <div class="text-center mb-4">
+                        <h2 class="titulo-episodios">
+                            EPISODIOS
+                        </h2>
+                    </div>
+                    <div id="carouselTemporadas" class="carousel slide">
+
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active">
+                                <div id="temporadas-pag-1" class="row gx-2 justify-content-center p-4">
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div id="temporadas-pag-2" class="row gx-2 justify-content-center p-4">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas"
+                            data-bs-slide="prev" style="width: 5%;">
+                            <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas"
+                            data-bs-slide="next" style="width: 5%;">
+                            <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
+                                style="width: 40px; height: 40px;">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </span>
+                        </button>
+                    </div>
+
+
+                </section>
+
+            </main>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-black text-center py-2">
+            <small>Rick and Morty Database - Proyecto Educativo</small>
         </footer>
+    </div>
 
-    </section>
+    <!-- ================= JS ================= -->
+    <script>
+        let page = 1;
+        let currentData = [];
+    const list = document.getElementById("characters");
+    const info = document.getElementById("character-info");
 
-    <div id="item-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="modal-close-button
+    function loadCharacters() {
+        fetch("https://rickandmortyapi.com/api/character")
+            .then(res => res.json())
+            .then(data => {
+                currentData = data.results;
+                renderCharacters(currentData);
+            });
+    }
+
+    function renderCharacters(data) {
+        list.innerHTML = "";
+        data.slice(0, 15).forEach(c => {
+            const li = document.createElement("li");
+            li.className = "col";
+            li.innerHTML = `
+                <div class="card p-2 text-center">
+                    <img src="${c.image}" class="img-fluid">
+                    <div class="card-title">${c.name}</div>
+                </div>`;
+            li.querySelector(".card").onclick = () => selectCharacter(c, li.querySelector(".card"));
+            list.appendChild(li);
+        });
+    }
+
+    function selectCharacter(c, card) {
+        document.querySelectorAll("#characters .card").forEach(x => x.classList.remove("selected"));
+        card.classList.add("selected");
+
+        info.innerHTML = `
+            <h3>${c.name}</h3>
+            <img src="${c.image}" class="img-fluid rounded mb-3" style="max-width:260px;">
+            <p><strong>Estado:</strong> ${c.status}</p>
+            <p><strong>Especie:</strong> ${c.species}</p>
+            <p><strong>Género:</strong> ${c.gender}</p>
+            <p><strong>Origen:</strong> ${c.origin.name}</p>`;
+    }
+
+        function renderTemporadas() {
+            // 1. Buscamos los "huecos" donde vamos a meter las temporadas
+            const pag1 = document.getElementById("temporadas-pag-1");
+            const pag2 = document.getElementById("temporadas-pag-2");
+
+            // 2. Creamos una lista manual de 8 temporadas (del 1 al 8)
+            const totalTemporadas = [1, 2, 3, 4, 5, 6, 7, 8];
+
+            // 3. Empezamos a recorrer esa lista una por una
+            totalTemporadas.forEach((numero, index) => {
+
+                // Aquí guardamos el diseño de la tarjeta en una variable
+                // Usamos las comillas invertidas `` para poder meter el número de temporada
+                let diseñoTarjeta = `
+    <div class="col" style="flex: 0 0 20%; max-width: 20%;">
+        <div class="text-center">
+            <img src="https://rickandmortyapi.com/api/character/avatar/${numero}.jpeg" 
+                 class="img-fluid rounded border border-4 border-dark mb-2 img-temporada shadow">
+            
+            <h5 class="texto-temporada">TEMPORADA ${numero}</h5>
+        </div>
+    </div>
+`;
+
+                // 4. Lógica de reparto: 
+                // Si el índice es menor a 5 (posiciones 0,1,2,3,4), va a la página 1.
+                if (index < 5) {
+                    pag1.innerHTML += diseñoTarjeta;
+                } else {
+                    // Si no, va a la página 2.
+                    pag2.innerHTML += diseñoTarjeta;
+                }
+            });
+        }
+        // En lugar de llamar a la función a secas, asegúrate de que el carrusel se inicialice después
+        renderTemporadas();
+
+        // Carga inicial
+        loadCharacters();
+
+        function renderTemporadas() {
+            // 1. Buscamos los "huecos" donde vamos a meter las temporadas
+            const pag1 = document.getElementById("temporadas-pag-1");
+            const pag2 = document.getElementById("temporadas-pag-2");
+
+            // 2. Creamos una lista manual de 8 temporadas (del 1 al 8)
+            const totalTemporadas = [1, 2, 3, 4, 5, 6, 7, 8];
+
+            // 3. Empezamos a recorrer esa lista una por una
+            totalTemporadas.forEach((numero, index) => {
+
+                // Aquí guardamos el diseño de la tarjeta en una variable
+                // Usamos las comillas invertidas `` para poder meter el número de temporada
+                let diseñoTarjeta = `
+    <div class="col" style="flex: 0 0 20%; max-width: 20%;">
+        <div class="text-center">
+            <img src="https://rickandmortyapi.com/api/character/avatar/${numero}.jpeg" 
+                 class="img-fluid rounded border border-4 border-dark mb-2 img-temporada shadow">
+            
+            <h5 class="texto-temporada">TEMPORADA ${numero}</h5>
+        </div>
+    </div>
+`;
+
+                // 4. Lógica de reparto: 
+                // Si el índice es menor a 5 (posiciones 0,1,2,3,4), va a la página 1.
+                if (index < 5) {
+                    pag1.innerHTML += diseñoTarjeta;
+                } else {
+                    // Si no, va a la página 2.
+                    pag2.innerHTML += diseñoTarjeta;
+                }
+            });
+        }
+        // En lugar de llamar a la función a secas, asegúrate de que el carrusel se inicialice después
+        
+
+        // Esto fuerza a Bootstrap a reconocer el carrusel después de inyectar las fotos
+        const myCarousel = new bootstrap.Carousel(document.getElementById('carouselTemporadas'));
+    </script>
+
+</body>
+
+</html>
