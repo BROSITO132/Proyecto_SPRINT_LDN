@@ -60,7 +60,6 @@
             text-align: center;
             margin-top: 4px;
         }
-ºººº
 
         .titulo-episodios {
             /* Usamos el nombre exacto que pusimos arriba y el !important */
@@ -274,13 +273,32 @@
     const info = document.getElementById("character-info");
 
     function loadCharacters() {
-        fetch("https://rickandmortyapi.com/api/character")
-            .then(res => res.json())
-            .then(data => {
-                currentData = data.results;
-                renderCharacters(currentData);
-            });
-    }
+    // Usamos el proxy AllOrigins para saltarnos el bloqueo de tu red/antivirus
+    const proxyUrl = "https://api.allorigins.win/get?url=";
+    const apiUrl = encodeURIComponent("https://rickandmortyapi.com/api/character");
+
+    fetch(proxyUrl + apiUrl)
+        .then(res => {
+            if (!res.ok) throw new Error("Error en la respuesta del proxy");
+            return res.json();
+        })
+        .then(data => {
+            // AllOrigins devuelve los datos como un String dentro de 'contents'
+            // Por eso tenemos que usar JSON.parse para convertirlo en objeto
+            const datosReales = JSON.parse(data.contents);
+            
+            currentData = datosReales.results;
+            renderCharacters(currentData);
+        })
+        .catch(err => {
+            console.error("Error definitivo:", err);
+            info.innerHTML = `
+                <div class="alert alert-danger">
+                    <h5>Error de conexión</h5>
+                    <p>Parece que algo en tu red o antivirus sigue bloqueando la API.</p>
+                </div>`;
+        });
+}
 
     function renderCharacters(data) {
         list.innerHTML = "";
