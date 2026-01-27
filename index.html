@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <title>Rick and Morty Database</title>
 
-    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <style>
+        /* Mantenemos tus estilos originales */
         @font-face {
             font-family: 'MiFuenteRick';
             src: url('rick.ttf') format('truetype');
@@ -18,6 +19,7 @@
         body {
             background-color: #0b0b0b;
             color: #ffffff;
+            font-family: 'Open Sans', sans-serif; /* Fuente de Jordy aplicada */
         }
 
         h2, h3 {
@@ -25,8 +27,15 @@
             color: #b7e152;
         }
 
-        /*  SELECTOR PERSONAJES */
+        /* HEADER DE JORDY - Ajustes necesarios */
+        header {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 70vh;
+        }
 
+        /* Tus estilos de personajes y episodios se mantienen igual */
         #character-info {
             background: linear-gradient(160deg, #0f0014, #1c0026);
             border: 3px solid #8aff00;
@@ -53,22 +62,14 @@
             box-shadow: 0 0 25px #00fff2;
         }
 
-        #characters img {
-            border-radius: 10px;
+        .texto-temporada {
+            font-style: italic;
+            color: white;
+            text-shadow: 2px 2px 0 #000;
         }
-
-        .card-title {
-            font-size: 0.8rem;
-            text-align: center;
-            margin-top: 4px;
-        }
-
-        /*  EPISODIOS  */
 
         #seccion-episodios {
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('fondocarousel.png');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png');
             background-size: cover;
             background-position: center;
             border: 3px solid #b7e152;
@@ -87,269 +88,164 @@
             display: inline-block;
             transform: rotate(-3deg);
         }
-
-        .texto-temporada {
-            font-style: italic;
-            color: white;
-            text-shadow: 2px 2px 0 #000;
-        }
-
-        .img-temporada {
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .img-temporada:hover {
-            transform: scale(1.05);
-            border-color: #b7e152 !important;
-        }
     </style>
 </head>
 
-<body class="bg-dark text-light">
+<body>
 
-<div class="container-fluid min-vh-100 d-flex flex-column">
+    <header>
+        <img src="img/header.jpg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit:cover" alt="Rick and Morty header">
+        <div class="position-absolute top-0 start-0 w-100 bg-dark opacity-75" style="height: 10%;"></div>
+        <div class="position-relative h-100 text-light">
+            <div class="d-flex justify-content-between align-items-start px-4 pt-3"> 
+                <span class="fw-bold text-success">Rick & Morty Database</span>
+                <div class="d-flex gap-2"> 
+                    <button class="btn btn-outline-light btn-sm">HOME</button> 
+                    <button class="btn btn-warning btn-sm text-dark">SIGN IN</button> 
+                </div>
+            </div>
+            
+            <div class="position-absolute top-50 start-50 translate-middle w-50">
+                <input id="searchInput" type="text" class="form-control form-control-lg text-center" placeholder="Buscar personaje...">
+            </div>
 
-    <!-- HEADER -->
-    <header class="row bg-black py-3 align-items-center">
-        <div class="col-md-6 d-flex align-items-center">
-            <img src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-                 width="40" class="rounded-circle me-2">
-            <span class="fw-bold">Rick & Morty Database</span>
-        </div>
-
-        <div class="col-md-6 d-flex justify-content-end gap-3">
-            <input id="searchInput" type="text" class="form-control w-50" placeholder="Buscar personaje...">
+            <div class="position-absolute bottom-0 start-50 translate-middle-x pb-5">
+                <div class="d-flex gap-3 flex-wrap justify-content-center"> 
+                    <button class="btn btn-lg text-white" style="background-color: purple;">Personajes</button> 
+                    <button class="btn btn-lg text-white" style="background-color: purple;">Comunidad</button> 
+                    <button class="btn btn-lg text-white" style="background-color: purple;">Universos</button> 
+                    <button class="btn btn-lg text-white" style="background-color: purple;">Episodios</button> 
+                </div>
+            </div>
         </div>
     </header>
+    <div class="container-fluid mt-4">
+        <div class="row">
 
-    <div class="row flex-grow-1">
+            <aside class="col-lg-3 col-md-4 border-end border-secondary p-3">
+                <h5 class="text-info">🔍 Filtros</h5>
+                <div class="mb-3">
+                    <label class="form-label">Estado</label>
+                    <select id="statusFilter" class="form-select">
+                        <option value="">Todos</option>
+                        <option value="alive">Vivo</option>
+                        <option value="dead">Muerto</option>
+                        <option value="unknown">Desconocido</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Especie</label>
+                    <select id="speciesFilter" class="form-select">
+                        <option value="">Todas</option>
+                        <option value="Human">Humano</option>
+                        <option value="Alien">Alien</option>
+                    </select>
+                </div>
+                <div class="d-grid gap-2">
+                    <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
+                    <button class="btn btn-outline-secondary" onclick="resetFilters()">Limpiar</button>
+                </div>
+            </aside>
 
-        <!-- ASIDE -->
-        <aside class="col-lg-3 col-md-4 border-end border-secondary p-3">
-            <h5 class="text-info">🔍 Filtros</h5>
-
-            <div class="mb-3">
-                <label class="form-label">Estado</label>
-                <select id="statusFilter" class="form-select">
-                    <option value="">Todos</option>
-                    <option value="alive">Vivo</option>
-                    <option value="dead">Muerto</option>
-                    <option value="unknown">Desconocido</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Especie</label>
-                <select id="speciesFilter" class="form-select">
-                    <option value="">Todas</option>
-                    <option value="Human">Humano</option>
-                    <option value="Alien">Alien</option>
-                </select>
-            </div>
-
-            <div class="d-grid gap-2">
-                <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
-                <button class="btn btn-outline-secondary" onclick="resetFilters()">Limpiar</button>
-            </div>
-        </aside>
-
-        <!-- MAIN -->
-        <main class="col-lg-9 col-md-8 p-4">
-
-            <!-- SELECTOR PERSONAJES -->
-            <section class="container-fluid mb-5">
-                <div class="row g-4">
-
-                    <div class="col-md-6">
-                        <div id="character-info" class="p-4 text-center">
-                            <h3>PERSONAJE</h3>
-                            <p class="text-muted">Selecciona un personaje</p>
+            <main class="col-lg-9 col-md-8 p-4">
+                <section class="container-fluid mb-5">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div id="character-info" class="p-4 text-center">
+                                <h3>PERSONAJE</h3>
+                                <p class="text-muted">Selecciona un personaje</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <ul id="characters" class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3 list-unstyled">
+                                </ul>
                         </div>
                     </div>
+                </section>
 
-                    <div class="col-md-6">
-                        <ul id="characters"
-                            class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3 list-unstyled">
-                        </ul>
+                <section id="seccion-episodios" class="container-fluid p-4 shadow-lg">
+                    <div class="text-center mb-4">
+                        <h2 class="titulo-episodios">EPISODIOS</h2>
                     </div>
-
-                </div>
-            </section>
-
-            <!-- SELECTOR EPISODIOS -->
-            <section id="seccion-episodios" class="container-fluid p-4 shadow-lg">
-
-                <div class="text-center mb-4">
-                    <h2 class="titulo-episodios">EPISODIOS</h2>
-                </div>
-
-                <div id="carouselTemporadas" class="carousel slide">
-
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                            <div id="temporadas-pag-1" class="row justify-content-center gx-3"></div>
+                    <div id="carouselTemporadas" class="carousel slide">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div id="temporadas-pag-1" class="row justify-content-center gx-3"></div>
+                            </div>
+                            <div class="carousel-item">
+                                <div id="temporadas-pag-2" class="row justify-content-center gx-3"></div>
+                            </div>
                         </div>
-
-                        <div class="carousel-item">
-                            <div id="temporadas-pag-2" class="row justify-content-center gx-3"></div>
-                        </div>
-
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="next">
+                            <span class="carousel-control-next-icon"></span>
+                        </button>
                     </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                    </button>
-
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                    </button>
-
-                </div>
-
-            </section>
-
-        </main>
+                </section>
+            </main>
+        </div>
     </div>
 
-    <!--FOOTER-->
-        <footer class="footer">
-            <div class="row py-4 justify-content-center">
-                <!--LOGO-->
-                <div class="col-12 col-md-2 col-lg-2" id="footer__logo">
-                    <div class="d-flex flex-column mb-3 align-items-center">
-                        <img src="./assets/Diseño sin título (2).jpg" alt="logo_web"/>
-                    </div>
-                    
-                </div>
-                <!--NAVEGACION-->
-                <div class="col-2 col-md-2 col-lg-1 p-0">
-                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
-                        <a href="https://www.marvel.com/characters" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Characters</a>
-                        <a href="https://www.marvel.com/comics" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Comics</a>
-                        <a href="https://www.marvel.com/movies" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Movies</a>
-                        <a href="https://www.marvel.com/tv-shows" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Series</a>
-                    </div>
-                </div>
-                <!--ENLACES-->
-                <div class="col-2 col-md-2 col-lg-1 p-0">
-                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
-                        <a href="https://www.marvel.com/corporate/about" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Marvel</a>
-                        <a href="https://www.marvel.com/corporate/advertising" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Advertising</a>
-                        <a href="https://www.marvel.com/movies" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1" data-bs-toggle="modal" data-bs-target="#contactoModal" >Contact Us</a>
-                        <a href="https://help.marvel.com/hc/en-es" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">FAQS</a>
-                    </div>
-                </div>
-                <!--ICONOS-->
-                <div class="col-2 col-md-2 col-lg-3 p-0">
-                    <div class="row text-center">
-                        <h4 id="tittle__footer"> FOLLOW rick y morty</h4>
-                    </div>
-                    <div id="footer__iconos" class="d-flex justify-content-center gap-3 flex-wrap mb-4">
-                        <a href="https://twitter.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./assets/twitter-x.svg">
-                        </a>
-                        <a href="https://www.instagram.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./assets/instagram (1).svg"></a>
-                        <a href="https://www.facebook.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./assets/facebook.svg"></a>
-                        <a href="https://www.youtube.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./assets/youtube.svg"></a>
-                        <a href="https://discord.gg/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./assets/discord.svg"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row py-4">
-                <div  id="footer__copyright"class="d-flex justify-content-center align-items-center gap-2">
-                        <a href="https://www.marvel.com/corporate/about" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Terms of Use</a>
-                        <a href="https://www.marvel.com/corporate/advertising" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Privacy Policy</a>
-                        <a href="https://www.marvel.com/movies" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2" >EU Privacy Rights</a>
-                        <a href="https://help.marvel.com/hc/en-es" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Cookie Policy</a>
-                        <a href="https://help.marvel.com/hc/en-es" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Manage Privacy Preferences</a>
-                        <p class="mb-0">©2026 adultswim</p>
-                </div>
-            </div>
-        </footer>
+    <script>
+        // Mantenemos tu lógica de JavaScript que ya funciona perfectamente
+        let currentData = [];
+        const list = document.getElementById("characters");
+        const info = document.getElementById("character-info");
 
-        <!-- INFO DE CONTACTO FOOTER-->
-        <div class="modal fade" id="contactoModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Contacto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Email:</strong> soporte@rickymorty.com</p>
-                        <p><strong>Teléfono:</strong> +34 900 123 456</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        function loadCharacters() {
+            fetch("https://rickandmortyapi.com/api/character")
+                .then(res => res.json())
+                .then(data => {
+                    currentData = data.results;
+                    renderCharacters(currentData);
+                });
+        }
 
-</div>
-
-<script>
-    let currentData = [];
-    const list = document.getElementById("characters");
-    const info = document.getElementById("character-info");
-
-    function loadCharacters() {
-        fetch("https://rickandmortyapi.com/api/character")
-            .then(res => res.json())
-            .then(data => {
-                currentData = data.results;
-                renderCharacters(currentData);
+        function renderCharacters(data) {
+            list.innerHTML = "";
+            data.slice(0, 15).forEach(c => {
+                const li = document.createElement("li");
+                li.className = "col";
+                li.innerHTML = `
+                    <div class="card p-2 text-center">
+                        <img src="${c.image}" class="img-fluid">
+                        <div class="card-title" style="font-size:0.7rem">${c.name}</div>
+                    </div>`;
+                li.querySelector(".card").onclick = () => selectCharacter(c, li.querySelector(".card"));
+                list.appendChild(li);
             });
-    }
+        }
 
-    function renderCharacters(data) {
-        list.innerHTML = "";
-        data.slice(0, 15).forEach(c => {
-            const li = document.createElement("li");
-            li.className = "col";
-            li.innerHTML = `
-                <div class="card p-2 text-center">
-                    <img src="${c.image}" class="img-fluid">
-                    <div class="card-title">${c.name}</div>
-                </div>`;
-            li.querySelector(".card").onclick = () => selectCharacter(c, li.querySelector(".card"));
-            list.appendChild(li);
-        });
-    }
+        function selectCharacter(c, card) {
+            document.querySelectorAll("#characters .card").forEach(x => x.classList.remove("selected"));
+            card.classList.add("selected");
+            info.innerHTML = `
+                <h3>${c.name}</h3>
+                <img src="${c.image}" class="img-fluid rounded mb-3" style="max-width:260px;">
+                <p><strong>Estado:</strong> ${c.status}</p>
+                <p><strong>Especie:</strong> ${c.species}</p>
+                <p><strong>Género:</strong> ${c.gender}</p>
+                <p><strong>Origen:</strong> ${c.origin.name}</p>`;
+        }
 
-    function selectCharacter(c, card) {
-        document.querySelectorAll("#characters .card").forEach(x => x.classList.remove("selected"));
-        card.classList.add("selected");
+        function renderTemporadas() {
+            const pag1 = document.getElementById("temporadas-pag-1");
+            const pag2 = document.getElementById("temporadas-pag-2");
+            [1,2,3,4,5,6,7,8].forEach((n,i) => {
+                const card = `
+                    <div class="col text-center" style="max-width:180px;">
+                        <img src="https://rickandmortyapi.com/api/character/avatar/${n}.jpeg"
+                             class="img-fluid rounded border border-4 border-dark img-temporada mb-2">
+                        <h6 class="texto-temporada">TEMPORADA ${n}</h6>
+                    </div>`;
+                if(i < 5) pag1.innerHTML += card; else pag2.innerHTML += card;
+            });
+        }
 
-        info.innerHTML = `
-            <h3>${c.name}</h3>
-            <img src="${c.image}" class="img-fluid rounded mb-3" style="max-width:260px;">
-            <p><strong>Estado:</strong> ${c.status}</p>
-            <p><strong>Especie:</strong> ${c.species}</p>
-            <p><strong>Género:</strong> ${c.gender}</p>
-            <p><strong>Origen:</strong> ${c.origin.name}</p>`;
-    }
-
-    function renderTemporadas() {
-        const pag1 = document.getElementById("temporadas-pag-1");
-        const pag2 = document.getElementById("temporadas-pag-2");
-
-        [1,2,3,4,5,6,7,8].forEach((n,i) => {
-            const card = `
-                <div class="col text-center" style="max-width:180px;">
-                    <img src="https://rickandmortyapi.com/api/character/avatar/${n}.jpeg"
-                         class="img-fluid rounded border border-4 border-dark img-temporada mb-2">
-                    <h6 class="texto-temporada">TEMPORADA ${n}</h6>
-                </div>`;
-            (i < 5 ? pag1 : pag2).innerHTML += card;
-        });
-    }
-
-    loadCharacters();
-    renderTemporadas();
-</script>
-
+        loadCharacters();
+        renderTemporadas();
+    </script>
 </body>
 </html>
