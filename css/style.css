@@ -1,25 +1,76 @@
 :root {
     --main-bg-color: #b7e152;
     --nav-bg-color: rgba(0, 0, 0, 0.50);
+    --color-purple: purple;
+    --color-black: black;
 }
 
-.nav-bg{
+.header-nav-bg {
     background-color: var(--nav-bg-color);
 }
-.button-conf {
+
+.btn-header {
     background-color: var(--main-bg-color);
-    color: purple;
+    color: var(--color-purple);
     font-family: 'MiFuenteRick', serif;
     box-shadow: 0 0 10px #faff8d;
     transition: 0.5s;
 }
 
-.button-conf:hover {
-    background-color: purple;
+.btn-header:hover {
+    background-color: var(--color-purple);
     color: var(--main-bg-color);
     transform: translateY(-6px);
+}
 
+.nav-conf {
+}
+.select-nav {
+    background-color: var(--nav-bg-color);
+    color: var(--main-bg-color);
+    box-shadow: 0 0 10px #faff8d;
+}
 
+.select-nav:hover {
+    background-color: var(--color-purple);
+    color: var(--main-bg-color);
+    transform: translateY(-6px);
+}
+
+.select-nav:focus {
+    /*Al poner !important, nos aseguramos de que tu color gane la pelea contra el color por defecto de la librería.*/
+    color: var(--main-bg-color) !important;
+    /* Mantenemos tu fondo púrpura */
+    background-color: var(--color-purple);
+    /* El brillo neón que ya tenías */
+    box-shadow: 0 0 15px #b7e152;
+    border-color: #b7e152;
+    outline: none;
+}
+
+select.select-nav {
+    /* Aquí reemplazamos la flecha por defecto. 
+       - "data:image/svg+xml": Le dice al navegador que lo que sigue es un dibujo vectorial (SVG).
+       - "stroke='%23b7e152'": Es el color de la línea. El '%23' es como se escribe el '#' en una URL. 
+       - "stroke-width='2'": Es el grosor de la flecha.
+       - "d='m2 5 6 6 6-6'": Son las coordenadas matemáticas que dibujan la forma de "V".
+    */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23b7e152' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+
+    /* Evita que la flecha se repita como un mosaico */
+    background-repeat: no-repeat;
+
+    /* Posiciona la flecha: 
+       - "right .75rem": la separa un poco del borde derecho.
+       - "center": la centra verticalmente.
+    */
+    background-position: right .75rem center;
+
+    /* Controla el tamaño de la flechita (ancho y alto) */
+    background-size: 16px 12px;
+
+    /* Un borde para que el select no se "pierda" en el fondo */
+    border: 1px solid #b7e152;
 }
 
 /* CSS */
@@ -53,7 +104,8 @@ body {
     color: #ffffff;
 }
 
-h2, h3 {
+h2,
+h3 {
     font-family: 'MiFuenteRick', sans-serif;
     color: #b7e152;
 }
