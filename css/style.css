@@ -119,6 +119,7 @@ h3 {
 }
 
 #characters .card {
+    color: white;
     background: #140018;
     border: 2px solid #8aff00;
     border-radius: 12px;
