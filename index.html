@@ -159,11 +159,81 @@
             </main>
         </div>
 
-        <!-- FOOTER -->
-        <footer class="bg-black text-center py-2">
-            <small>Rick and Morty Database - Proyecto Educativo</small>
+        <!--FOOTER-->
+        <footer class="footer">
+            <div class="row py-4 justify-content-center">
+                <!--LOGO-->
+                <div class="col-12 col-md-2 col-lg-2" id="footer__logo">
+                    <div class="d-flex flex-column mb-3 align-items-center">
+                        <img src="./img/WebLogo.png" alt="logo_web" width="100" height="100"/>
+                    </div>
+                    
+                </div>
+                <!--NAVEGACION-->
+                <div class="col-2 col-md-2 col-lg-1 p-0">
+                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Characters</a>
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Comics</a>
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Shows</a>
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Series</a>
+                    </div>
+                </div>
+                <!--ENLACES-->
+                <div class="col-2 col-md-2 col-lg-1 p-0">
+                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">AdultSwim</a>
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Advertising</a>
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1" data-bs-toggle="modal" data-bs-target="#contactoModal" >Contact Us</a>
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">FAQS</a>
+                    </div>
+                </div>
+                <!--ICONOS-->
+                <div class="col-2 col-md-2 col-lg-3 p-0">
+                    <div class="row text-center">
+                        <h4 id="tittle__footer"> FOLLOW RICKYMORTYAPI</h4>
+                    </div>
+                    <div id="footer__iconos" class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+                        <a href="https://twitter.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./img/twitter.svg" width="16" height="16">
+                        </a>
+                        <a href="https://www.instagram.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./img/instagram.svg" width="16" height="16"></a>
+                        <a href="https://www.facebook.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./img/facebook.svg" width="16" height="16"></a>
+                        <a href="https://www.youtube.com/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./img/youtube.svg" width="16" height="16"></a>
+                        <a href="https://discord.gg/marvel" class="btn btn-light" target="_blank" rel="noopener noreferrer"><img src="./img/discord.svg" width="16" height="16"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-4">
+                <div  id="footer__copyright"class="d-flex justify-content-center align-items-center gap-2">
+                        <a href="https://www.marvel.com/corporate/about" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Terms of Use</a>
+                        <a href="https://www.marvel.com/corporate/advertising" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Privacy Policy</a>
+                        <a href="https://www.marvel.com/movies" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2" >EU Privacy Rights</a>
+                        <a href="https://help.marvel.com/hc/en-es" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Cookie Policy</a>
+                        <a href="https://help.marvel.com/hc/en-es" class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Manage Privacy Preferences</a>
+                        <p class="mb-0">©2026 ADULTSWIM</p>
+                </div>
+            </div>
         </footer>
-    </div>
+
+        <!-- INFO DE CONTACTO FOOTER-->
+        <div class="modal fade" id="contactoModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Contacto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Email:</strong> soporte@rickymortyapi.com</p>
+                        <p><strong>Teléfono:</strong> +34 900 123 456</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <script src="/Js/index.js"></script>
 </body>
