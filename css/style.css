@@ -23,8 +23,6 @@
     transform: translateY(-6px);
 }
 
-.nav-conf {
-}
 .select-nav {
     background-color: var(--nav-bg-color);
     color: var(--main-bg-color);
