@@ -7,347 +7,501 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link rel="stylesheet" href="/css/style.css">
+    
+    <!-- Z-INDEX APLICADO -->
     <style>
-        /* Mantenemos tus estilos originales */
-        @font-face {
-            font-family: 'MiFuenteRick';
-            src: url('rick.ttf') format('truetype');
-        }
-
-        body {
-            background-color: #0b0b0b;
-            color: #ffffff;
-            font-family: 'Open Sans', sans-serif;
-        }
-
-        h2, h3 {
-            font-family: 'MiFuenteRick', sans-serif;
-            color: #b7e152;
-        }
-
-        /* HEADER - Z-INDEX APLICADO */
-        header {
+        /* HEADER - Capas 1-10 */
+        header.img-main {
             position: relative;
-            width: 100%;
-            overflow: hidden;
-            height: 70vh;
-            z-index: 1; /* Capa base del header */
+            z-index: 1;
         }
-
-        /* Imagen de fondo del header - Capa más baja */
-        header img {
-            z-index: 1; /* Imagen de fondo */
+        
+        .navbar.header-nav-bg {
+            position: relative;
+            z-index: 10;
         }
-
-        /* Overlay oscuro sobre la imagen */
-        header .bg-dark {
-            z-index: 2; /* Overlay oscuro encima de la imagen */
+        
+        .navbar-brand {
+            position: relative;
+            z-index: 11;
         }
-
-        /* Contenedor principal del contenido del header */
-        header .position-relative {
-            z-index: 3; /* Contenido general del header */
+        
+        .navbar-toggler {
+            position: relative;
+            z-index: 12;
         }
-
-        /* Navegación superior (HOME, SIGN IN) */
-        header .d-flex.justify-content-between {
-            z-index: 4; /* Navegación superior */
+        
+        .navbar-collapse {
+            position: relative;
+            z-index: 11;
         }
-
-        /* Buscador central */
-        header .top-50 {
-            z-index: 5; /* Input de búsqueda */
+        
+        .navbar-nav .nav-item {
+            position: relative;
+            z-index: 12;
         }
-
-        /* Botones del footer del header (Personajes, Comunidad, etc.) */
-        header .bottom-0 {
-            z-index: 4; /* Botones inferiores */
+        
+        .btn-header {
+            position: relative;
+            z-index: 13;
         }
-
-        /* Tus estilos de personajes y episodios se mantienen igual */
+        
+        /* NAV-CONF - Capas 15-20 */
+        .nav-conf {
+            position: relative;
+            z-index: 15;
+        }
+        
+        .select-nav {
+            position: relative;
+            z-index: 16;
+        }
+        
+        /* MAIN CONTENT - Capas 20-40 */
+        main {
+            position: relative;
+            z-index: 20;
+        }
+        
+        #personajes {
+            position: relative;
+            z-index: 25;
+        }
+        
         #character-info {
-            background: linear-gradient(160deg, #0f0014, #1c0026);
-            border: 3px solid #8aff00;
-            border-radius: 20px;
-            box-shadow: 0 0 30px #39ff14;
-            min-height: 520px;
             position: relative;
-            z-index: 10; /* Panel de información del personaje */
+            z-index: 26;
         }
-
+        
         #characters {
             position: relative;
-            z-index: 11; /* Lista de personajes ligeramente superior */
+            z-index: 27;
         }
-
+        
         #characters .card {
-            background: #140018;
-            border: 2px solid #8aff00;
-            border-radius: 12px;
-            transition: all 0.25s ease;
-            cursor: pointer;
             position: relative;
-            z-index: 12; /* Cards de personajes */
+            z-index: 28;
         }
-
+        
         #characters .card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px #39ff14;
-            z-index: 13; /* Card en hover sube por encima de las demás */
+            z-index: 29;
         }
-
+        
         #characters .card.selected {
-            border-color: #00fff2;
-            box-shadow: 0 0 25px #00fff2;
-            z-index: 14; /* Card seleccionada es la más alta */
+            z-index: 30;
         }
-
-        /* Sidebar de filtros */
-        aside {
-            position: relative;
-            z-index: 15; /* Sidebar de filtros */
-        }
-
-        .texto-temporada {
-            font-style: italic;
-            color: white;
-            text-shadow: 2px 2px 0 #000;
-            position: relative;
-            z-index: 20; /* Texto de temporadas */
-        }
-
+        
+        /* EPISODIOS - Capas 35-41 */
         #seccion-episodios {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png');
-            background-size: cover;
-            background-position: center;
-            border: 3px solid #b7e152;
-            border-radius: 20px;
             position: relative;
-            z-index: 16; /* Sección de episodios */
+            z-index: 35;
         }
-
+        
         .titulo-episodios {
-            font-family: 'MiFuenteRick', sans-serif;
-            font-size: 3rem;
-            color: #b7e152;
-            background-color: black;
-            padding: 10px 40px;
-            border: 3px solid #b7e152;
-            border-radius: 10px;
-            text-shadow: 4px 4px 0px #000;
-            display: inline-block;
-            transform: rotate(-3deg);
             position: relative;
-            z-index: 17; /* Título de episodios */
+            z-index: 36;
         }
-
-        /* Controles del carousel */
+        
+        .carousel {
+            position: relative;
+            z-index: 37;
+        }
+        
+        .carousel-inner {
+            position: relative;
+            z-index: 38;
+        }
+        
+        .carousel-item {
+            position: relative;
+            z-index: 39;
+        }
+        
         .carousel-control-prev,
         .carousel-control-next {
-            z-index: 18; /* Controles del carousel */
+            position: relative;
+            z-index: 40;
         }
-
-        /* Imágenes de temporadas */
+        
+        #temporadas-pag-1,
+        #temporadas-pag-2 {
+            position: relative;
+            z-index: 39;
+        }
+        
         .img-temporada {
             position: relative;
-            z-index: 19; /* Imágenes de temporadas */
+            z-index: 40;
         }
-
-        /* Botones generales */
+        
+        .texto-temporada {
+            position: relative;
+            z-index: 41;
+        }
+        
+        /* FOOTER - Capas 50-60 */
+        .footer {
+            position: relative;
+            z-index: 50;
+        }
+        
+        #footer__logo {
+            position: relative;
+            z-index: 51;
+        }
+        
+        #footer__iconos {
+            position: relative;
+            z-index: 52;
+        }
+        
+        #footer__copyright {
+            position: relative;
+            z-index: 51;
+        }
+        
+        /* ELEMENTOS GENERALES */
         .btn {
             position: relative;
-            z-index: 20; /* Botones en general */
+            z-index: 45;
         }
-
-        /* Form controls (inputs, selects) */
+        
         .form-control,
         .form-select {
             position: relative;
-            z-index: 21; /* Controles de formulario */
+            z-index: 46;
+        }
+        
+        aside {
+            position: relative;
+            z-index: 22;
         }
     </style>
 </head>
 
-<body>
+<body class="bg-dark text-light">
 
-    <header>
-        <img src="img/header.jpg" class="position-absolute top-0 start-0 w-100 h-100" style="object-fit:cover" alt="Rick and Morty header">
-        <div class="position-absolute top-0 start-0 w-100 bg-dark opacity-75" style="height: 10%;"></div>
-        <div class="position-relative h-100 text-light">
-            <div class="d-flex justify-content-between align-items-start px-4 pt-3"> 
-                <span class="fw-bold text-success">Rick & Morty Database</span>
-                <div class="d-flex gap-2"> 
-                    <button class="btn btn-outline-light btn-sm">HOME</button> 
-                    <button class="btn btn-warning btn-sm text-dark">SIGN IN</button> 
+    <!-- HTML -->
+    <header class="img-main" style="
+        background-image: url('./img/header.png');
+        background-position: center;
+        background-size: cover;
+        height: 650px;
+        ">
+        <nav class="navbar navbar-expand-lg sticky-top header-nav-bg" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="/img/Rick_and_Morty.png" alt="Logo" width="150" class="d-inline-block align-text-top">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="navbar-nav gap-3 ms-3 ">
+                        <li class="nav-item ">
+                            <a id="btnPersonajes" class="btn btn-md btn-header fs-4 fw-bold " aria-current="page"
+                                href="#personajes">Personajes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-md btn-header fs-4 fw-bold" aria-current="page" href="#">Comunidad</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-md btn-header fs-4 fw-bold" aria-current="page" href="#">Universos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="btnEpisodios" class="btn btn-md btn-header fs-4 fw-bold" aria-current="page"
+                                href="#seccion-episodios">Episodios</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="flex-row-reverse">
+                    <ul class="navbar-nav gap-3 ms-3">
+                        <li class="nav-item">
+                            <a class="btn btn-header me-4 fs-5 fw-bold" aria-current="page" href="">SIGN IN</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            
-            <div class="position-absolute top-50 start-50 translate-middle w-50">
-                <input id="searchInput" type="text" class="form-control form-control-lg text-center" placeholder="Buscar personaje...">
-            </div>
-
-            <div class="position-absolute bottom-0 start-50 translate-middle-x pb-5">
-                <div class="d-flex gap-3 flex-wrap justify-content-center"> 
-                    <button class="btn btn-lg text-white" style="background-color: purple;">Personajes</button> 
-                    <button class="btn btn-lg text-white" style="background-color: purple;">Comunidad</button> 
-                    <button class="btn btn-lg text-white" style="background-color: purple;">Universos</button> 
-                    <button class="btn btn-lg text-white" style="background-color: purple;">Episodios</button> 
-                </div>
-            </div>
-        </div>
+        </nav>
     </header>
-    <div class="container-fluid mt-4">
-        <div class="row">
 
-            <aside class="col-lg-3 col-md-4 border-end border-secondary p-3">
-                <h5 class="text-info">🔎 Filtros</h5>
-                <div class="mb-3">
-                    <label class="form-label">Estado</label>
-                    <select id="statusFilter" class="form-select">
-                        <option value="">Todos</option>
-                        <option value="alive">Vivo</option>
-                        <option value="dead">Muerto</option>
-                        <option value="unknown">Desconocido</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Especie</label>
-                    <select id="speciesFilter" class="form-select">
-                        <option value="">Todas</option>
-                        <option value="Human">Humano</option>
-                        <option value="Alien">Alien</option>
-                    </select>
-                </div>
-                <div class="d-grid gap-2">
-                    <button class="btn btn-success" onclick="applyFilters()">Aplicar filtros</button>
-                    <button class="btn btn-outline-secondary" onclick="resetFilters()">Limpiar</button>
-                </div>
-            </aside>
+    <!-- ASIDE -->
+    <nav class="nav-conf row d-flex justify-content-center align-items-center g-3 mt-4">
+        <div class="col-lg-2 col-md-4">
+            <select id="statusFilter" class="form-select select-nav fs-4 fw-bold">
+                <option value="" selected disabled>Estado</option>
+                <option value="">Todos</option>
+                <option value="alive">Vivos</option>
+                <option value="dead">Muertos</option>
+                <option value="unknown">Desconocidos</option>
+            </select>
+        </div>
+        <div class="col-lg-2 col-md-4">
+            <select id="speciesFilter" class="form-select select-nav fs-4 fw-bold">
+                <option value="" selected disabled>Especie</option>
+                <option value="">Todas</option>
+                <option value="Human">Humanos</option>
+                <option value="Alien">Aliens</option>
+            </select>
+        </div>
 
-            <main class="col-lg-9 col-md-8 p-4">
-                <section class="container-fluid mb-5">
-                    <div class="row g-4">
+        <div class="col-lg-2 d-flex justify-content-center  gap-2">
+            <button class="btn btn-md select-nav fs-6 fw-bold" onclick="applyFilters()">Aplicar</button>
+            <button class="btn btn-md select-nav fs-6 fw-bold" onclick="resetFilters()">Limpiar</button>
+        </div>
+    </nav>
+    <!-- ================= CONTENIDO ================= -->
+
+    <!-- MAIN -->
+    <main class="container-fluid min-vh-100 d-flex flex-column p-4">
+
+        <!-- SELECTOR PERSONAJES -->
+        <section id="personajes" class="row mb-4">
+
                         <div class="col-md-6">
                             <div id="character-info" class="p-4 text-center">
                                 <h3>PERSONAJE</h3>
                                 <p class="text-muted">Selecciona un personaje</p>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <ul id="characters" class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3 list-unstyled">
-                                </ul>
+                            </ul>
                         </div>
+
                     </div>
                 </section>
 
-                <section id="seccion-episodios" class="container-fluid p-4 shadow-lg">
-                    <div class="text-center mb-4">
-                        <h2 class="titulo-episodios">EPISODIOS</h2>
-                    </div>
-                    <div id="carouselTemporadas" class="carousel slide">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                                <div id="temporadas-pag-1" class="row justify-content-center gx-3"></div>
-                            </div>
-                            <div class="carousel-item">
-                                <div id="temporadas-pag-2" class="row justify-content-center gx-3"></div>
+
+                <!--CROUSEL DE ESPISODIOS-->
+                <section id="seccion-episodios" class="container-fluid rounded mb-4 p-4 shadow-lg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png') !important;
+           background-size: cover !important; 
+           background-position: center !important;
+           background-repeat: no-repeat !important;
+           border: 3px solid #b7e152;">
+                <div class="text-center mb-4">
+                    <h2 class="titulo-episodios">
+                        EPISODIOS
+                    </h2>
+                </div>
+                <div id="carouselTemporadas" class="carousel slide">
+
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active item-1">
+                            <div id="temporadas-pag-1" class="row gx-2 justify-content-center p-4 w-75 mx-auto">
                             </div>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </button>
+
+                        <div class="carousel-item w-75 item-2">
+                            <div id="temporadas-pag-2" class="row gx-2 justify-content-center p-4 w-75 mx-auto">
+                            </div>
+                        </div>
+
                     </div>
-                </section>
-            </main>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas"
+                        data-bs-slide="prev" style="width: 5%;">
+                        <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
+                            style="width: 40px; height: 40px;">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas"
+                        data-bs-slide="next" style="width: 5%;">
+                        <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
+                            style="width: 40px; height: 40px;">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                </div>
+
+
+            </section>
         </div>
-    </div>
+    </main>
 
-    <script>
-        // Mantenemos tu lógica de JavaScript que ya funciona perfectamente
-        let currentData = [];
-        const list = document.getElementById("characters");
-        const info = document.getElementById("character-info");
+        <!--FOOTER-->
+        <footer class="footer">
+            <div class="row py-4 justify-content-center">
+                <!--LOGO-->
+                <div class="col-12 col-md-2 col-lg-2" id="footer__logo">
+                    <div class="d-flex flex-column mb-3 align-items-center">
+                        <img src="./img/WebLogo.png" alt="logo_web" width="100" height="100" />
+                    </div>
 
-        function loadCharacters() {
-            fetch("https://rickandmortyapi.com/api/character")
-                .then(res => res.json())
-                .then(data => {
-                    currentData = data.results;
-                    renderCharacters(currentData);
+                </div>
+                <!--NAVEGACION-->
+                <div class="col-2 col-md-2 col-lg-1 p-0">
+                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
+                        <a href=""
+                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Characters</a>
+                        <a href=""
+                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Comics</a>
+                        <a href=""
+                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Shows</a>
+                        <a href=""
+                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Series</a>
+                    </div>
+                </div>
+                <!--ENLACES-->
+                <div class="col-2 col-md-2 col-lg-1 p-0">
+                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
+                        <a href=""
+                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">AdultSwim</a>
+                        <a href=""
+                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Advertising</a>
+                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1"
+                            data-bs-toggle="modal" data-bs-target="#contactoModal">Contact Us</a>
+                        <a href=""
+                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">FAQS</a>
+                    </div>
+                </div>
+                <!--ICONOS-->
+                <div class="col-2 col-md-2 col-lg-3 p-0">
+                    <div class="row text-center">
+                        <h4 id="tittle__footer"> FOLLOW RICKYMORTYAPI</h4>
+                    </div>
+                    <div id="footer__iconos" class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+                        <a href="https://x.com/rickandmorty" class="btn btn-light" target="_blank"
+                            rel="noopener noreferrer"><img src="./img/twitter.svg" width="16" height="16"></a>
+                        <a href="https://www.instagram.com/rickandmorty" class="btn btn-light" target="_blank"
+                            rel="noopener noreferrer"><img src="./img/instagram.svg" width="16" height="16"></a>
+                        <a href="https://www.facebook.com/RickandMorty" class="btn btn-light" target="_blank"
+                            rel="noopener noreferrer"><img src="./img/facebook.svg" width="16" height="16"></a>
+                        <a href="https://www.youtube.com/@AdultSwim_LA/posts" class="btn btn-light" target="_blank"
+                            rel="noopener noreferrer"><img src="./img/youtube.svg" width="16" height="16"></a>
+                        <a href="https://discord.com/invite/adult-swim-328003080845000705" class="btn btn-light" target="_blank"
+                            rel="noopener noreferrer"><img src="./img/discord.svg" width="16" height="16"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row py-4">
+                <div id="footer__copyright" class="d-flex justify-content-center align-items-center gap-2">
+                    <a href="https://www.marvel.com/corporate/about"
+                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Terms of Use</a>
+                    <a href="https://www.marvel.com/corporate/advertising"
+                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Privacy Policy</a>
+                    <a href="https://www.marvel.com/movies"
+                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">EU Privacy
+                        Rights</a>
+                    <a href="https://help.marvel.com/hc/en-es"
+                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Cookie Policy</a>
+                    <a href="https://help.marvel.com/hc/en-es"
+                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Manage Privacy
+                        Preferences</a>
+                    <p class="mb-0">©2026 ADULTSWIM</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- INFO DE CONTACTO FOOTER-->
+        <div class="modal fade" id="contactoModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Contacto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Email:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2b58445b44595f4e6b59424840524644595f524a5b4205484446">[email&#160;protected]</a></p>
+                        <p><strong>Teléfono:</strong> +34 900 123 456</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="/js/index.js"></script>
+        
+        <!-- Script para cargar personajes y episodios -->
+        <script>
+            let currentData = [];
+            const list = document.getElementById("characters");
+            const info = document.getElementById("character-info");
+
+            function loadCharacters() {
+                fetch("https://rickandmortyapi.com/api/character")
+                    .then(res => res.json())
+                    .then(data => {
+                        currentData = data.results;
+                        renderCharacters(currentData);
+                    });
+            }
+
+            function renderCharacters(data) {
+                list.innerHTML = "";
+                data.slice(0, 15).forEach(c => {
+                    const li = document.createElement("li");
+                    li.className = "col";
+                    li.innerHTML = `
+                        <div class="card p-2 text-center">
+                            <img src="${c.image}" class="img-fluid">
+                            <div class="card-title" style="font-size:0.7rem">${c.name}</div>
+                        </div>`;
+                    li.querySelector(".card").onclick = () => selectCharacter(c, li.querySelector(".card"));
+                    list.appendChild(li);
                 });
-        }
-
-        function renderCharacters(data) {
-            list.innerHTML = "";
-            data.slice(0, 15).forEach(c => {
-                const li = document.createElement("li");
-                li.className = "col";
-                li.innerHTML = `
-                    <div class="card p-2 text-center">
-                        <img src="${c.image}" class="img-fluid">
-                        <div class="card-title" style="font-size:0.7rem">${c.name}</div>
-                    </div>`;
-                li.querySelector(".card").onclick = () => selectCharacter(c, li.querySelector(".card"));
-                list.appendChild(li);
-            });
-        }
-
-        function selectCharacter(c, card) {
-            document.querySelectorAll("#characters .card").forEach(x => x.classList.remove("selected"));
-            card.classList.add("selected");
-            info.innerHTML = `
-                <h3>${c.name}</h3>
-                <img src="${c.image}" class="img-fluid rounded mb-3" style="max-width:260px;">
-                <p><strong>Estado:</strong> ${c.status}</p>
-                <p><strong>Especie:</strong> ${c.species}</p>
-                <p><strong>Género:</strong> ${c.gender}</p>
-                <p><strong>Origen:</strong> ${c.origin.name}</p>`;
-        }
-
-        function renderTemporadas() {
-            const pag1 = document.getElementById("temporadas-pag-1");
-            const pag2 = document.getElementById("temporadas-pag-2");
-            [1,2,3,4,5,6,7,8].forEach((n,i) => {
-                const card = `
-                    <div class="col text-center" style="max-width:180px;">
-                        <img src="https://rickandmortyapi.com/api/character/avatar/${n}.jpeg"
-                             class="img-fluid rounded border border-4 border-dark img-temporada mb-2">
-                        <h6 class="texto-temporada">TEMPORADA ${n}</h6>
-                    </div>`;
-                if(i < 5) pag1.innerHTML += card; else pag2.innerHTML += card;
-            });
-        }
-
-        function applyFilters() {
-            const status = document.getElementById("statusFilter").value;
-            const species = document.getElementById("speciesFilter").value;
-            
-            let filtered = currentData;
-            
-            if(status) {
-                filtered = filtered.filter(c => c.status.toLowerCase() === status);
             }
-            
-            if(species) {
-                filtered = filtered.filter(c => c.species === species);
+
+            function selectCharacter(c, card) {
+                document.querySelectorAll("#characters .card").forEach(x => x.classList.remove("selected"));
+                card.classList.add("selected");
+                info.innerHTML = `
+                    <h3>${c.name}</h3>
+                    <img src="${c.image}" class="img-fluid rounded mb-3" style="max-width:260px;">
+                    <p><strong>Estado:</strong> ${c.status}</p>
+                    <p><strong>Especie:</strong> ${c.species}</p>
+                    <p><strong>Género:</strong> ${c.gender}</p>
+                    <p><strong>Origen:</strong> ${c.origin.name}</p>`;
             }
-            
-            renderCharacters(filtered);
-        }
 
-        function resetFilters() {
-            document.getElementById("statusFilter").value = "";
-            document.getElementById("speciesFilter").value = "";
-            renderCharacters(currentData);
-        }
+            function renderTemporadas() {
+                const pag1 = document.getElementById("temporadas-pag-1");
+                const pag2 = document.getElementById("temporadas-pag-2");
+                [1,2,3,4,5,6,7,8].forEach((n,i) => {
+                    const card = `
+                        <div class="col text-center" style="max-width:180px;">
+                            <img src="https://rickandmortyapi.com/api/character/avatar/${n}.jpeg"
+                                 class="img-fluid rounded border border-4 border-dark img-temporada mb-2">
+                            <h6 class="texto-temporada">TEMPORADA ${n}</h6>
+                        </div>`;
+                    if(i < 5) pag1.innerHTML += card; else pag2.innerHTML += card;
+                });
+            }
 
-        loadCharacters();
-        renderTemporadas();
-    </script>
+            function applyFilters() {
+                const status = document.getElementById("statusFilter").value;
+                const species = document.getElementById("speciesFilter").value;
+                
+                let filtered = currentData;
+                
+                if(status) {
+                    filtered = filtered.filter(c => c.status.toLowerCase() === status);
+                }
+                
+                if(species) {
+                    filtered = filtered.filter(c => c.species === species);
+                }
+                
+                renderCharacters(filtered);
+            }
+
+            function resetFilters() {
+                document.getElementById("statusFilter").value = "";
+                document.getElementById("speciesFilter").value = "";
+                renderCharacters(currentData);
+            }
+
+            loadCharacters();
+            renderTemporadas();
+        </script>
 </body>
+
 </html>
