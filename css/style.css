@@ -2,12 +2,23 @@
     --main-bg-color: #b7e152;
     --nav-bg-color: rgba(0, 0, 0, 0.50);
     --color-purple: purple;
-    --color-black: black;
+    --neon-green: #39ff14;
 }
 
-.header-nav-bg {
-    background-color: var(--nav-bg-color);
+@font-face {
+    font-family: 'MiFuenteRick';
+    src: url('rick.ttf') format('truetype');
 }
+
+/* Header */
+.header-principal {
+    background-image: url('../img/header.png');
+    background-position: center;
+    background-size: cover;
+    height: 650px;
+}
+
+.header-nav-bg { background-color: var(--nav-bg-color); }
 
 .btn-header {
     background-color: var(--main-bg-color);
@@ -23,113 +34,33 @@
     transform: translateY(-6px);
 }
 
+/* Filtros */
 .select-nav {
     background-color: var(--nav-bg-color);
     color: var(--main-bg-color);
     box-shadow: 0 0 10px #faff8d;
+    border: 1px solid var(--main-bg-color);
 }
 
-.select-nav:hover {
-    background-color: var(--color-purple);
-    color: var(--main-bg-color);
-    transform: translateY(-6px);
-}
-
-.select-nav:focus {
-    /*Al poner !important, nos aseguramos de que tu color gane la pelea contra el color por defecto de la librería.*/
-    color: var(--main-bg-color) !important;
-    /* Mantenemos tu fondo púrpura */
-    background-color: var(--color-purple);
-    /* El brillo neón que ya tenías */
-    box-shadow: 0 0 15px #b7e152;
-    border-color: #b7e152;
-    outline: none;
-}
-
-select.select-nav {
-    /* Aquí reemplazamos la flecha por defecto. 
-       - "data:image/svg+xml": Le dice al navegador que lo que sigue es un dibujo vectorial (SVG).
-       - "stroke='%23b7e152'": Es el color de la línea. El '%23' es como se escribe el '#' en una URL. 
-       - "stroke-width='2'": Es el grosor de la flecha.
-       - "d='m2 5 6 6 6-6'": Son las coordenadas matemáticas que dibujan la forma de "V".
-    */
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23b7e152' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
-
-    /* Evita que la flecha se repita como un mosaico */
-    background-repeat: no-repeat;
-
-    /* Posiciona la flecha: 
-       - "right .75rem": la separa un poco del borde derecho.
-       - "center": la centra verticalmente.
-    */
-    background-position: right .75rem center;
-
-    /* Controla el tamaño de la flechita (ancho y alto) */
-    background-size: 16px 12px;
-
-    /* Un borde para que el select no se "pierda" en el fondo */
-    border: 1px solid #b7e152;
-}
-
-/* CSS */
-.img-main {
-    background-image: url("../img/logo1.jpg");
-    background-position: center;
-    background-size: cover;
-    width: 100%;
-    height: 700px;
-}
-
-
-.height-10 {
-    height: 10%
-}
-
-.img-conf-header {
-    object-fit: cover
-}
-
-@font-face {
-    font-family: 'MiFuenteRick';
-    /* Le ponemos un nombre único para que no se confunda */
-    src: url('rick.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-body {
-    background-color: #0b0b0b;
-    color: #ffffff;
-}
-
-h2,
-h3 {
-    font-family: 'MiFuenteRick', sans-serif;
-    color: #b7e152;
-}
-
-/*  SELECTOR PERSONAJES */
-
-#character-info {
+/* Personajes */
+.info-container {
     background: linear-gradient(160deg, #0f0014, #1c0026);
     border: 3px solid #8aff00;
     border-radius: 20px;
-    box-shadow: 0 0 30px #39ff14;
+    box-shadow: 0 0 30px var(--neon-green);
     min-height: 520px;
 }
 
-#characters .card {
-    color: white;
-    background: #140018;
-    border: 2px solid #8aff00;
-    border-radius: 12px;
-    transition: all 0.25s ease;
-    cursor: pointer;
+.img-detalle {
+    max-width: 260px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
 }
 
-#characters .card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #39ff14;
+#characters .card {
+    background: #140018;
+    border: 2px solid #8aff00;
+    transition: 0.25s;
 }
 
 #characters .card.selected {
@@ -137,72 +68,35 @@ h3 {
     box-shadow: 0 0 25px #00fff2;
 }
 
-#characters img {
-    border-radius: 10px;
-}
-
-.card-title {
-    font-size: 0.8rem;
-    text-align: center;
-    margin-top: 4px;
+/* Episodios */
+.seccion-episodios-bg {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png');
+    background-size: cover;
+    border: 3px solid var(--main-bg-color);
 }
 
 .titulo-episodios {
-    /* Usamos el nombre exacto que pusimos arriba y el !important */
     font-family: 'MiFuenteRick', sans-serif !important;
-
     font-size: 4rem;
-    color: #b7e152;
+    color: var(--main-bg-color);
     background-color: black;
     padding: 10px 40px;
-    border: 3px solid #b7e152;
-    border-radius: 10px;
-    text-shadow: 4px 4px 0 #000;
-    display: inline-block;
+    border: 3px solid var(--main-bg-color);
     transform: rotate(-3deg);
-    margin-bottom: 20px;
+    display: inline-block;
 }
 
-/* 2. Estilo para el texto "Temporada X" */
-.texto-temporada {
-    font-family: 'Arial Black', sans-serif;
-    font-style: italic;
-    color: #ffffff;
-    /* Cambiamos a blanco si el fondo es muy oscuro */
-    text-shadow: 2px 2px 0 #000, 0 0 10px #b7e152;
-    /* Doble sombra: negra para leer bien, verde para el estilo */
-    text-transform: uppercase;
-    margin-top: 10px;
+.carousel-control-icon-bg {
+    background-color: black;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* 3. Efecto en las imágenes para que resalten */
-.img-temporada {
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
-.img-temporada:hover {
-    transform: scale(1.05);
-    /* Se agranda un poco al pasar el ratón */
-    border-color: #b7e152;
-    /* El borde cambia a verde */
-}
-
-/* Esto ajusta el tamaño de la sección dependiendo de la pantalla */
-#seccion-episodios {
-    /* Para que el fondo no haga saltos raros en móvil */
-    background-position: center;
-    transition: all 0.3s ease;
-}
-
-/* Ajuste para que las tarjetas no se peguen al borde en pantallas pequeñas */
-@media (max-width: 768px) {
-    .texto-temporada {
-        font-size: 0.8rem;
-        /* Texto más pequeño en móviles */
-    }
-
-    #seccion-episodios {
-        padding: 20px 10px !important;
-    }
+.temp-card-col {
+    flex: 0 0 20%;
+    max-width: 20%;
 }

@@ -1,64 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rick and Morty Database</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-
 <body class="bg-dark text-light">
 
-    <!-- HTML -->
-    <header class="img-main" style="
-        background-image: url('./img/header.png');
-        background-position: center;
-        background-size: cover;
-        height: 650px;
-        ">
+    <header class="header-principal">
         <nav class="navbar navbar-expand-lg sticky-top header-nav-bg" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="/img/Rick_and_Morty.png" alt="Logo" width="150" class="d-inline-block align-text-top">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse " id="navbarNav">
-                    <ul class="navbar-nav gap-3 ms-3 ">
-                        <li class="nav-item ">
-                            <a id="btnPersonajes" class="btn btn-md btn-header fs-4 fw-bold " aria-current="page"
-                                href="#personajes">Personajes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-md btn-header fs-4 fw-bold" aria-current="page" href="#">Comunidad</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="btn btn-md btn-header fs-4 fw-bold" aria-current="page" href="#">Universos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="btnEpisodios" class="btn btn-md btn-header fs-4 fw-bold" aria-current="page"
-                                href="#seccion-episodios">Episodios</a>
-                        </li>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav gap-3 ms-3">
+                        <li class="nav-item"><a id="btnPersonajes" class="btn btn-md btn-header fs-4 fw-bold" href="#personajes">Personajes</a></li>
+                        <li class="nav-item"><a class="btn btn-md btn-header fs-4 fw-bold" href="#">Comunidad</a></li>
+                        <li class="nav-item"><a class="btn btn-md btn-header fs-4 fw-bold" href="#">Universos</a></li>
+                        <li class="nav-item"><a id="btnEpisodios" class="btn btn-md btn-header fs-4 fw-bold" href="#seccion-episodios">Episodios</a></li>
                     </ul>
                 </div>
-                <div class="flex-row-reverse">
+                <div class="d-none d-lg-block">
                     <ul class="navbar-nav gap-3 ms-3">
-                        <li class="nav-item">
-                            <a class="btn btn-header me-4 fs-5 fw-bold" aria-current="page" href="">SIGN IN</a>
-                        </li>
+                        <li class="nav-item"><a class="btn btn-header me-4 fs-5 fw-bold" href="">SIGN IN</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- ASIDE -->
-    <nav class="nav-conf row d-flex justify-content-center align-items-center g-3 mt-4">
+    <nav class="nav-conf row d-flex justify-content-center align-items-center g-3 mt-4 mx-0">
         <div class="col-lg-2 col-md-4">
             <select id="statusFilter" class="form-select select-nav fs-4 fw-bold">
                 <option value="" selected disabled>Estado</option>
@@ -76,180 +54,111 @@
                 <option value="Alien">Aliens</option>
             </select>
         </div>
-
-        <div class="col-lg-2 d-flex justify-content-center  gap-2">
-            <button class="btn btn-md select-nav fs-6 fw-bold" onclick="applyFilters()">Aplicar</button>
-            <button class="btn btn-md select-nav fs-6 fw-bold" onclick="resetFilters()">Limpiar</button>
+        <div class="col-lg-2 d-flex justify-content-center gap-2">
+            <button class="btn btn-md select-nav fs-6 fw-bold">Aplicar</button>
+            <button class="btn btn-md select-nav fs-6 fw-bold">Limpiar</button>
         </div>
     </nav>
-    <!-- ================= CONTENIDO ================= -->
 
-    <!-- MAIN -->
-    <main class="container-fluid min-vh-100 d-flex flex-column p-4">
-
-        <!-- SELECTOR PERSONAJES -->
-        <section id="personajes" class="row mb-4">
-
-                        <div class="col-md-6">
-                            <div id="character-info" class="p-4 text-center">
-                                <h3>PERSONAJE</h3>
-                                <p class="text-muted">Selecciona un personaje</p>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <ul id="characters" class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3 list-unstyled">
-                            </ul>
-                        </div>
-
-                    </div>
-                </section>
-
-
-                <!--CROUSEL DE ESPISODIOS-->
-                <section id="seccion-episodios" class="container-fluid rounded mb-4 p-4 shadow-lg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('fondocarousel.png') !important;
-           background-size: cover !important; 
-           background-position: center !important;
-           background-repeat: no-repeat !important;
-           border: 3px solid #b7e152;">
-                <div class="text-center mb-4">
-                    <h2 class="titulo-episodios">
-                        EPISODIOS
-                    </h2>
-                </div>
-                <div id="carouselTemporadas" class="carousel slide">
-
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active item-1">
-                            <div id="temporadas-pag-1" class="row gx-2 justify-content-center p-4 w-75 mx-auto">
-                            </div>
-                        </div>
-
-                        <div class="carousel-item w-75 item-2">
-                            <div id="temporadas-pag-2" class="row gx-2 justify-content-center p-4 w-75 mx-auto">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas"
-                        data-bs-slide="prev" style="width: 5%;">
-                        <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
-                            style="width: 40px; height: 40px;">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        </span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas"
-                        data-bs-slide="next" style="width: 5%;">
-                        <span class="bg-dark rounded-circle d-flex align-items-center justify-content-center"
-                            style="width: 40px; height: 40px;">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        </span>
-                    </button>
-                </div>
-
-
-            </section>
-        </div>
-    </main>
-
-        <!--FOOTER-->
-        <footer class="footer">
-            <div class="row py-4 justify-content-center">
-                <!--LOGO-->
-                <div class="col-12 col-md-2 col-lg-2" id="footer__logo">
-                    <div class="d-flex flex-column mb-3 align-items-center">
-                        <img src="./img/WebLogo.png" alt="logo_web" width="100" height="100" />
-                    </div>
-
-                </div>
-                <!--NAVEGACION-->
-                <div class="col-2 col-md-2 col-lg-1 p-0">
-                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
-                        <a href=""
-                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Characters</a>
-                        <a href=""
-                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Comics</a>
-                        <a href=""
-                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Shows</a>
-                        <a href=""
-                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Series</a>
-                    </div>
-                </div>
-                <!--ENLACES-->
-                <div class="col-2 col-md-2 col-lg-1 p-0">
-                    <div class="d-flex flex-column mb-3 align-items-center flex-wrap">
-                        <a href=""
-                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">AdultSwim</a>
-                        <a href=""
-                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">Advertising</a>
-                        <a href="" class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1"
-                            data-bs-toggle="modal" data-bs-target="#contactoModal">Contact Us</a>
-                        <a href=""
-                            class="link-light link-offset-2 link-underline link-underline-opacity-0 mb-1">FAQS</a>
-                    </div>
-                </div>
-                <!--ICONOS-->
-                <div class="col-2 col-md-2 col-lg-3 p-0">
-                    <div class="row text-center">
-                        <h4 id="tittle__footer"> FOLLOW RICKYMORTYAPI</h4>
-                    </div>
-                    <div id="footer__iconos" class="d-flex justify-content-center gap-3 flex-wrap mb-4">
-                        <a href="https://x.com/rickandmorty" class="btn btn-light" target="_blank"
-                            rel="noopener noreferrer"><img src="./img/twitter.svg" width="16" height="16"></a>
-                        <a href="https://www.instagram.com/rickandmorty" class="btn btn-light" target="_blank"
-                            rel="noopener noreferrer"><img src="./img/instagram.svg" width="16" height="16"></a>
-                        <a href="https://www.facebook.com/RickandMorty" class="btn btn-light" target="_blank"
-                            rel="noopener noreferrer"><img src="./img/facebook.svg" width="16" height="16"></a>
-                        <a href="https://www.youtube.com/@AdultSwim_LA/posts" class="btn btn-light" target="_blank"
-                            rel="noopener noreferrer"><img src="./img/youtube.svg" width="16" height="16"></a>
-                        <a href="https://discord.com/invite/adult-swim-328003080845000705" class="btn btn-light" target="_blank"
-                            rel="noopener noreferrer"><img src="./img/discord.svg" width="16" height="16"></a>
-                    </div>
+    <main class="container-fluid min-vh-100 p-4">
+        <section id="personajes" class="row mb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div id="character-info" class="p-4 text-center info-container">
+                    <h3>PERSONAJE</h3>
+                    <p class="text-muted">Selecciona un personaje</p>
                 </div>
             </div>
-            <div class="row py-4">
-                <div id="footer__copyright" class="d-flex justify-content-center align-items-center gap-2">
-                    <a href="https://www.marvel.com/corporate/about"
-                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Terms of Use</a>
-                    <a href="https://www.marvel.com/corporate/advertising"
-                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Privacy Policy</a>
-                    <a href="https://www.marvel.com/movies"
-                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">EU Privacy
-                        Rights</a>
-                    <a href="https://help.marvel.com/hc/en-es"
-                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Cookie Policy</a>
-                    <a href="https://help.marvel.com/hc/en-es"
-                        class="link-light link-offset-2 link-underline link-underline-opacity-0 p-2">Manage Privacy
-                        Preferences</a>
-                    <p class="mb-0">©2026 ADULTSWIM</p>
-                </div>
+            <div class="col-md-6">
+                <ul id="characters" class="row row-cols-3 row-cols-sm-4 row-cols-md-5 g-3 list-unstyled"></ul>
             </div>
-        </footer>
-
-        <!-- INFO DE CONTACTO FOOTER-->
-        <div class="modal fade" id="contactoModal" tabindex="-1">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Contacto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p><strong>Email:</strong> soporte@rickymortyapi.com</p>
-                        <p><strong>Teléfono:</strong> +34 900 123 456</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         </section>
 
+        <section id="seccion-episodios" class="seccion-episodios-bg rounded mb-4 p-4 shadow-lg">
+            <div class="text-center mb-4">
+                <h2 class="titulo-episodios">EPISODIOS</h2>
+            </div>
+            <div id="carouselTemporadas" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div id="temporadas-pag-1" class="row gx-2 justify-content-center p-4 w-75 mx-auto"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div id="temporadas-pag-2" class="row gx-2 justify-content-center p-4 w-75 mx-auto"></div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="prev">
+                    <span class="carousel-control-icon-bg"><span class="carousel-control-prev-icon"></span></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselTemporadas" data-bs-slide="next">
+                    <span class="carousel-control-icon-bg"><span class="carousel-control-next-icon"></span></span>
+                </button>
+            </div>
+        </section>
+    </main>
 
-        <script src="/Js/index.js"></script>
+    <footer class="footer border-top border-secondary mt-5">
+        <div class="container-fluid py-4">
+            <div class="row justify-content-center text-center text-md-start">
+                <div class="col-12 col-md-2 mb-4 mb-md-0 d-flex justify-content-center">
+                    <img src="./img/WebLogo.png" alt="logo_web" width="100" height="100" />
+                </div>
+                <div class="col-6 col-md-2 col-lg-1 mb-3">
+                    <div class="d-flex flex-column gap-1">
+                        <a href="#" class="text-light text-decoration-none small">Characters</a>
+                        <a href="#" class="text-light text-decoration-none small">Comics</a>
+                        <a href="#" class="text-light text-decoration-none small">Shows</a>
+                        <a href="#" class="text-light text-decoration-none small">Series</a>
+                    </div>
+                </div>
+                <div class="col-6 col-md-2 col-lg-1 mb-3">
+                    <div class="d-flex flex-column gap-1">
+                        <a href="#" class="text-light text-decoration-none small">AdultSwim</a>
+                        <a href="#" class="text-light text-decoration-none small">Advertising</a>
+                        <a href="#" class="text-light text-decoration-none small" data-bs-toggle="modal" data-bs-target="#contactoModal">Contact Us</a>
+                        <a href="#" class="text-light text-decoration-none small">FAQS</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <h4 id="tittle__footer" class="mb-3">FOLLOW RICKYMORTYAPI</h4>
+                    <div id="footer__iconos" class="d-flex justify-content-center justify-content-md-start gap-2">
+                        <a href="https://x.com/rickandmorty" class="btn btn-light btn-sm" target="_blank"><img src="./img/twitter.svg" width="16"></a>
+                        <a href="https://www.instagram.com/rickandmorty" class="btn btn-light btn-sm" target="_blank"><img src="./img/instagram.svg" width="16"></a>
+                        <a href="https://www.facebook.com/RickandMorty" class="btn btn-light btn-sm" target="_blank"><img src="./img/facebook.svg" width="16"></a>
+                        <a href="https://www.youtube.com/@AdultSwim_LA" class="btn btn-light btn-sm" target="_blank"><img src="./img/youtube.svg" width="16"></a>
+                        <a href="https://discord.com" class="btn btn-light btn-sm" target="_blank"><img src="./img/discord.svg" width="16"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 pt-4 border-top border-secondary text-center">
+                <div id="footer__copyright" class="col-12 d-flex flex-wrap justify-content-center gap-3">
+                    <a href="#" class="text-light text-decoration-none x-small">Terms of Use</a>
+                    <a href="#" class="text-light text-decoration-none x-small">Privacy Policy</a>
+                    <a href="#" class="text-light text-decoration-none x-small">Cookie Policy</a>
+                    <p class="mb-0 x-small text-secondary">©2026 ADULTSWIM</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="contactoModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-light">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contacto</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Email:</strong> soporte@rickymortyapi.com</p>
+                    <p><strong>Teléfono:</strong> +34 900 123 456</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/index.js"></script>
 </body>
-
 </html>
