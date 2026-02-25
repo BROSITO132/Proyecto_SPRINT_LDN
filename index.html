@@ -17,10 +17,16 @@
             z-index: 1;
         }
         
-        .navbar.header-nav-bg {
-            position: relative;
-            z-index: 10;
+        html {
+        scroll-padding-top: 80px;
         }
+        
+       
+        .navbar.header-nav-bg {
+             position: relative;
+             z-index: 2000; 
+        }
+
         
         .navbar-brand {
             position: relative;
@@ -60,13 +66,13 @@
         
         /* MAIN CONTENT - Capas 20-40 */
         main {
-            position: relative;
-            z-index: 20;
-        }
+        margin-top: 50px;
+    }
         
         #personajes {
             position: relative;
             z-index: 25;
+            scroll-margin-top: 120px;
         }
         
         #character-info {
@@ -93,10 +99,12 @@
         }
         
         /* EPISODIOS - Capas 35-41 */
-        #seccion-episodios {
-            position: relative;
-            z-index: 35;
+       #seccion-episodios {
+        position: relative;
+         z-index: 2000;
+         scroll-margin-top: 120px;
         }
+        
         
         .titulo-episodios {
             position: relative;
